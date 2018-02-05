@@ -1,0 +1,25 @@
+<h1>search foods</h1>
+<form ng-submit="searchFoods()">
+    <input type="text" placeholder="What have you eaten today?" ng-model="searchBar">
+    <button type="submit">search</button>
+</form>
+
+<div id="foodCard">
+    <ul>
+        <li ng-repeat="food in foods | filter: searchBar">
+            <h3>{{food.fields.item_name}}:</h3><br>
+            Calories: {{food.fields.nf_calories}}<br>
+            Protein: {{food.fields.nf_protein}}<br>
+            Fat: {{food.fields.nf_total_fat}}<br>
+            Carbohydrates: {{food.fields.nf_total_carbohydrate}}
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
