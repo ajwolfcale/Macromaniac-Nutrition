@@ -3,4 +3,4 @@ css/
 lib/.sass-cache
 .vscode/
 app/values/fb-creds.js
-app/values/fat-creds.js
+app/values/food-creds.js

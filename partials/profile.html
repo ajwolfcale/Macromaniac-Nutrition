@@ -1,0 +1,19 @@
+<h1>User Profile</h1>
+
+<div>
+    <h4>Create your profile by entering your height, weight, and age.</h4>
+    <form>
+        First Name: <input type="text" ng-model="userProfile.firstName"><br><br>
+        Last Name: <input type="text" ng-model="userProfile.lastName"><br><br>
+        Age: <input type="number" ng-model="userProfile.age"><br><br>
+        Weight: <input type="number" ng-model="userProfile.weight"><br><br>
+        What is your daily caloric goal? 
+        <input type="number" ng-model="userProfile.calGoal"><br><br>
+        <!-- Initial Progress picture: <input type="file" name="img">  -->
+    </form>
+
+    <button class="btn btn-default" ng-click="saveProfile()">Submit Your Profile!</button>
+</div>  
+
+
+
