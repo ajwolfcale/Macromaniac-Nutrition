@@ -1,0 +1,6 @@
+lib/node_modules
+css/
+lib/.sass-cache
+.vscode/
+app/values/fb-creds.js
+app/values/fat-creds.js
