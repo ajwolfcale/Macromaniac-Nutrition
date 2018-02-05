@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Macromaniac Nutrition</title>
+</head>    
+<body ng-app="NutritionApp">
+
+    <!-- <div ng-include='partials/navbar.html'></div> -->
+    <div ng-view></div>
+      
+
+    
+    
+    <script src="lib/node_modules/angular/angular.min.js"></script>
+	<script src="lib/node_modules/angular-route/angular-route.min.js"></script>
+	<script src="lib/node_modules/firebase/firebase.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/values/fb-creds.js"></script>
+    <script src="app/values/food-creds.js"></script>
+    <!-- Factories -->
+    <script src="app/factories/AuthFactory.js"></script>
+    <script src="app/factories/NutritionFactory.js"></script>
+    <script src="app/factories/ProfileFactory.js"></script>
+    <!-- Controllers -->
+    <script src="app/controllers/NavBarCtrl.js"></script>
+    <script src="app/controllers/LoginCtrl.js"></script>
+    <script src="app/controllers/ProfileCtrl.js"></script>
+    <script src="app/controllers/SearchCtrl.js"></script>
+</body>
+</html>
