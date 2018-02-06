@@ -22,8 +22,15 @@ h3{
 }
 
 li{
+    display: inline-block;
     border: 1px dotted rgba(255, 255, 255, 0.883);
     width: 150px;
     margin: 15px;
     border-radius: 10p
 }
+
+.searchFoods{
+    width: 300px;
+}
+
+
