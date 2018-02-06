@@ -7,9 +7,11 @@ angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $loca
 		lastName: "",
 		age: "",
 		weight: "",
-		calGoal: ""
-		//   initProgPic:""
+		calGoal: "",
+		// progPic:""
+		date: ""
 	};
+
 
 	$scope.saveProfile = () => {
 		console.log('New Item to add', $scope.userProfile);
@@ -19,6 +21,8 @@ angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $loca
 				$window.location.href = "/#!/search";
 			});
 	};
+
+
 
 });
 
