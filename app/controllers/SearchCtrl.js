@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("NutritionApp").controller("SearchCtrl", function($scope, NutritionFactory){
+angular.module("NutritionApp").controller("SearchCtrl", function($scope, $window, NutritionFactory, ProfileFactory){
 
     $scope.searchFoods = () => {
         console.log("pressed enter");
@@ -11,5 +11,23 @@ angular.module("NutritionApp").controller("SearchCtrl", function($scope, Nutriti
         })
         .catch(err => console.error(err));
     };
+
+	$scope.consumedToday = {
+        date:"",
+		calories:"",
+		protein: "",
+		fat: "",
+		carbs:""
+	};
+
+	$scope.addNutrients = () => {
+		console.log('New Item to add', $scope.consumedToday);
+		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
+		ProfileFactory.addConsumed($scope.consumedToday)
+			.then((data) => {
+				$window.location.href = "/#!/search";
+			});
+	};
+
 
 });
