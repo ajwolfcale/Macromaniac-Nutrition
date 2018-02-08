@@ -6,15 +6,29 @@
 
 <div>
     <h4>If you have manually counted your calories and macros, use this form to update your profile:</h4>
-
     <form ng-submit="addNutrients()">
-        Date Eaten: <input id="date" type="date" ng-model="consumedToday.date"><br>
         Calories: <input type="number" ng-model="consumedToday.calories"> <br>
         Protein: <input type="number" ng-model="consumedToday.protein"><br>
         Fat: <input type="number" ng-model="consumedToday.fat"><br>
         Carbs: <input type="number" ng-model="consumedToday.carbs">
-        <button type="submit" class="btn btn-default">Add Nutrients</button>
+        <button type="submit" class="btn btn-default" ng-click="graphNutrients()">Add Nutrients</button>
     </form>
+</div>
+
+<h4>Progress</h4>
+<div id="graphContainer">
+        <!-- PIE -->
+        <div id="pieContainer" ng-model="pieChart">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels">
+            </canvas>
+        </div>
+        <!-- <button ng-click="graphNutrients()">button</button> -->
+    <!-- LINE -->
+        <div id="lineContainer">
+            <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
+            chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+        </div>
 </div>
 
 <div id="foodCard">
