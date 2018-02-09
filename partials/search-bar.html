@@ -1,3 +1,4 @@
+
 <h1>Search Foods</h1>
 <form ng-submit="searchFoods()">
     <input class="searchFoods" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
@@ -8,17 +9,23 @@
     <h4>If you have manually counted your calories and macros, use this form to update your profile:</h4>
     <form ng-submit="addNutrients()">
         Date: 
+        <div moment-picker="myDate"> </div>
         <div class="input-group"
              moment-picker="ctrl.datepicker"
-             format="MM-DD-YYYY">
+             format="L"
+             min-view="month"
+             max-view="day"
+             today="true"
+             set-on-select="true"
+             change="formatDate(newValue._i)"
+             >
             <span class="input-group-addon">
                 <i class="octicon octicon-calendar"></i>
             </span>
             <input class="form-control"
                    placeholder="Select a date"
                    ng-model="ctrl.datepicker"
-                   ng-model-options="{ updateOn: 'blur' }"
-                   ng-submit="consumedToday.date">
+                   ng-model-options="{ updateOn: 'blur' }">
         </div>
         Calories: <input type="number" ng-model="consumedToday.calories"> <br>
         Protein: <input type="number" ng-model="consumedToday.protein"><br>

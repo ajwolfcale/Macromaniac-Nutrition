@@ -3,11 +3,16 @@
 angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $window, NutritionFactory, ProfileFactory) {
 
 	$scope.consumedToday = {
-		date: "",
+		// date: "",
 		calories: "",
 		protein: "",
 		fat: "",
 		carbs: ""
+	};
+
+	$scope.formatDate = (date) => {
+		console.log("CHEKC THIS DATE", date);
+		$scope.consumedToday.date = date;
 	};
 
 	// --------------------------------Get Foods from API--------------------------
@@ -53,6 +58,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 		}
 		// console.log("$scope.consumedToday.fat", $scope.consumedToday.fat);
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
+		console.log("LOOOOOOK:", $scope.consumedToday);
 		ProfileFactory.addConsumed($scope.consumedToday);
 	};
 
