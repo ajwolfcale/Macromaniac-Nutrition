@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/node_modules/angular-moment-picker/dist/angular-moment-picker.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Macromaniac Nutrition</title>
 </head>    
@@ -12,12 +13,19 @@
     <!-- <div ng-include='partials/navbar.html'></div> -->
     <div ng-view></div>
       
-
+    <!-- ANGULAR -->
     <script src="lib/node_modules/angular/angular.min.js"></script>
     <script src="lib/node_modules/angular-route/angular-route.min.js"></script>  
+    <!-- ANGULAR.JS CHARTS.JS -->
     <script src="lib/node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="lib/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    <!-- MOMENT PICKER -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+    <script src="lib/node_modules/angular-moment-picker/dist/angular-moment-picker.min.js"></script>
+    <!-- FIREBASE -->
     <script src="lib/node_modules/firebase/firebase.js"></script>
+    <!-- MY STUFF -->
     <script src="app/app.js"></script>    
     <script src="app/values/fb-creds.js"></script>
     <script src="app/values/food-creds.js"></script>
@@ -27,7 +35,6 @@
     <script src="app/factories/ProfileFactory.js"></script>
     <!-- Controllers -->
     <script src="app/controllers/NavBarCtrl.js"></script>
-    <script src="app/controllers/GraphCtrl.js"></script>
     <script src="app/controllers/LoginCtrl.js"></script>
     <script src="app/controllers/ProfileCtrl.js"></script>
     <script src="app/controllers/SearchCtrl.js"></script>

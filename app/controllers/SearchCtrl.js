@@ -23,28 +23,37 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 	};
 
 	// --------------------------------Get Today's date--------------------------\
-	$scope.today = new Date();
-	$scope.dd = $scope.today.getDate();
-	$scope.mm = $scope.today.getMonth() + 1; //January is 0!
-	$scope.yyyy = $scope.today.getFullYear();
-	if ($scope.dd < 10) {
-		$scope.dd = '0' + $scope.dd;
-	}
-	if ($scope.mm < 10) {
-		$scope.mm = '0' + $scope.mm;
-	}
-	$scope.today = $scope.mm + '/' + $scope.dd + '/' + $scope.yyyy;
-	$scope.consumedToday.date = $scope.today;
+	// $scope.today = new Date();
+	// $scope.dd = $scope.today.getDate();
+	// $scope.mm = $scope.today.getMonth() + 1; //January is 0!
+	// $scope.yyyy = $scope.today.getFullYear();
+	// if ($scope.dd < 10) {
+	// 	$scope.dd = '0' + $scope.dd;
+	// }
+	// if ($scope.mm < 10) {
+	// 	$scope.mm = '0' + $scope.mm;
+	// }
+	// $scope.today = $scope.mm + '/' + $scope.dd + '/' + $scope.yyyy;
+	// $scope.consumedToday.date = $scope.today;
 
 // --------------------------------Add Nutrients to FB--------------------------
 
 	$scope.addNutrients = () => {
-		console.log('New Item to add', $scope.consumedToday);
+		if ($scope.consumedToday.calories === null){
+			$scope.consumedToday.calories = 0;
+		}
+		if ($scope.consumedToday.protein === null){
+			$scope.consumedToday.protein = 0;
+		} 
+		if ($scope.consumedToday.fat === null){
+			$scope.consumedToday.fat = 0;
+		}
+		if ($scope.consumedToday.carbs === null){
+			$scope.consumedToday.carbs = 0;
+		}
+		// console.log("$scope.consumedToday.fat", $scope.consumedToday.fat);
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
-		ProfileFactory.addConsumed($scope.consumedToday)
-			.then((data) => {
-				$window.location.href = "/#!/search";
-			});
+		ProfileFactory.addConsumed($scope.consumedToday);
 	};
 
 // --------------------------------Add Nutrients to FB--------------------------
@@ -58,18 +67,17 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 	};
 
 	$scope.graphNutrients = () => {
-		// console.log("getting nutrients");
 		NutritionFactory.getNutrients()
 			.then(function (results) {
 				console.log("CHECK THIS", results);
 				let nutrientsByDate = results.map((item) => {
 					// console.log("Item", item);
-					let todaysDate = item.date;
+					$scope.todaysDate = item.date;
 					calArr.push(item.calories);
 					proteinArr.push(item.protein);
 					fatArr.push(item.fat);
 					carbArr.push(item.carbs);
-					console.log("TODAY'S DATE", todaysDate);
+					// console.log("TODAY'S DATE", $scope.todaysDate);
 					// console.log("TOTAL CALORIES: ", calArr.reduce(getTotal));
 					// console.log("TOTAL PROTEIN: ", proteinArr.reduce(getTotal));
 					// console.log("TOTAL FAT: ", fatArr.reduce(getTotal));
@@ -81,13 +89,15 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 					$scope.pieData = [$scope.totalProtein, $scope.totalFat, $scope.totalCarbs];
 				});
 			})
-			.catch(err => console.error(err));
+			.catch( (err) => {
+				console.log(err);
+			  });	
 	};
+
 
 	// ---------------------------------PIE CHART---------------------------------
 
 	$scope.pieLabels = ["Protein", "Fat", "Carbs"];
-	// $scope.pieData = [$scope.totalProtein, $scope.totalFat, $scope.totalCarbs];
 	$scope.pieData = [1, 1, 1];
 	
 
@@ -112,5 +122,4 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 			]
 		}
 	};
-
-});
+	});
