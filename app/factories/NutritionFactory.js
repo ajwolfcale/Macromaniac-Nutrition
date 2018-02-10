@@ -20,15 +20,9 @@ angular.module("NutritionApp").factory("NutritionFactory", function ($q, $http, 
 	let getNutrients = () => {
 		return $q(function (resolve, reject) {
 			let currentUser = AuthFactory.getCurrentUser();
-			console.log("Current User:", currentUser);
-			$http.get(`${FBUrl}nutrientsToday.json?&orderBy="uid"&equalTo="${currentUser}"`)
-				.then(({ data }) => {
-					// console.log("data", data);
-					let nutrientArr = Object.values(data).map(nutrients => {
-						data[nutrients] = nutrients;
-						return data[nutrients];
-					});
-					// console.log("nutrients", nutrientArr);
+			$http.get(`${FBUrl}${currentUser}/nutrientsToday.json`)
+				.then((res) => {
+					let nutrientArr = Object.values(res.data);
 					resolve(nutrientArr);
 				})
 				.catch(function (error) {

@@ -17,12 +17,13 @@ angular.module("NutritionApp").factory("ProfileFactory", function(FBUrl, $q, $ht
             });
         };
 
-    let addConsumed = (userId) => {
+    let addConsumed = (data) => {
         return $q((resolve, reject) => {
             $http
-                .post(`${FBUrl}/nutrientsToday.json`, JSON.stringify(userId))
+                .post(`${FBUrl}/${data.uid}/nutrientsToday.json`, JSON.stringify(data))
                 .then(data => {
-                console.log("Added User's nutrients", data.data);
+                    // console.log(data);
+                // console.log("Added User's nutrients", data.data);
                 resolve(data.data);
                 })
                 .catch(error => {

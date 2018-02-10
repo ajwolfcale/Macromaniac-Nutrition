@@ -1,18 +1,38 @@
 'use strict';
 
 angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $window, NutritionFactory, ProfileFactory) {
+	// --------------------------------Get Today's date--------------------------\
+	$scope.today = new Date();
+	$scope.dd = $scope.today.getDate();
+	$scope.mm = $scope.today.getMonth()+1; //January is 0!
+	$scope.yyyy = $scope.today.getFullYear();
 
+	$scope.$on('$viewContentLoaded', function() {
+		$scope.graphNutrients();
+	});
+
+	if ($scope.dd < 10) {
+		$scope.dd = '0' + $scope.dd;
+	} 
+
+	if ($scope.mm < 10) {
+		$scope.mm = '0' + $scope.mm;
+	} 
+
+	$scope.today = $scope.mm + '/' + $scope.dd + '/' + $scope.yyyy;
+
+	// ----------------------------Create FB Object----------------------------------
 	$scope.consumedToday = {
-		// date: "",
 		calories: "",
 		protein: "",
 		fat: "",
-		carbs: ""
+		carbs: "",
+		date: $scope.today
 	};
 
 	$scope.formatDate = (date) => {
-		console.log("CHEKC THIS DATE", date);
 		$scope.consumedToday.date = date;
+		$scope.graphNutrients();
 	};
 
 	// --------------------------------Get Foods from API--------------------------
@@ -27,21 +47,8 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 			.catch(err => console.error(err));
 	};
 
-	// --------------------------------Get Today's date--------------------------\
-	// $scope.today = new Date();
-	// $scope.dd = $scope.today.getDate();
-	// $scope.mm = $scope.today.getMonth() + 1; //January is 0!
-	// $scope.yyyy = $scope.today.getFullYear();
-	// if ($scope.dd < 10) {
-	// 	$scope.dd = '0' + $scope.dd;
-	// }
-	// if ($scope.mm < 10) {
-	// 	$scope.mm = '0' + $scope.mm;
-	// }
-	// $scope.today = $scope.mm + '/' + $scope.dd + '/' + $scope.yyyy;
-	// $scope.consumedToday.date = $scope.today;
-
-// --------------------------------Add Nutrients to FB--------------------------
+   
+// --------------------------------Add MANUAL Nutrients to FB--------------------------
 
 	$scope.addNutrients = () => {
 		if ($scope.consumedToday.calories === null){
@@ -56,10 +63,25 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 		if ($scope.consumedToday.carbs === null){
 			$scope.consumedToday.carbs = 0;
 		}
-		// console.log("$scope.consumedToday.fat", $scope.consumedToday.fat);
+
+		$scope.graphNutrients();
+		
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
-		console.log("LOOOOOOK:", $scope.consumedToday);
 		ProfileFactory.addConsumed($scope.consumedToday);
+	};
+
+// --------------------------------Add API Nutrients to FB--------------------
+
+	$scope.addDbNutrients = (food) => {
+		console.log($scope.consumedToday); //empty string
+		$scope.consumedToday.calories = food.nf_calories;
+		$scope.consumedToday.protein = food.nf_protein;
+		$scope.consumedToday.fat = food.nf_total_fat;
+		$scope.consumedToday.carbs = food.nf_total_carbohydrate;
+
+		console.log($scope.consumedToday); //overwritten
+		
+		$scope.addNutrients();
 	};
 
 // --------------------------------Add Nutrients to FB--------------------------
@@ -73,12 +95,21 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 	};
 
 	$scope.graphNutrients = () => {
-		NutritionFactory.getNutrients()
+
+		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
+		$scope.pieData = [1, 1, 1];
+
+		return NutritionFactory.getNutrients()
 			.then(function (results) {
-				console.log("CHECK THIS", results);
-				let nutrientsByDate = results.map((item) => {
-					// console.log("Item", item);
-					$scope.todaysDate = item.date;
+				let dateSort = _.keyBy(results, 'date');
+				console.log(results);
+				let dateResults = results.filter(function(currentDay){
+					return currentDay.date === $scope.consumedToday.date;
+				});
+				console.log(dateResults);
+
+
+				let nutrientsByDate = dateResults.map((item) => {
 					calArr.push(item.calories);
 					proteinArr.push(item.protein);
 					fatArr.push(item.fat);
@@ -103,8 +134,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 
 	// ---------------------------------PIE CHART---------------------------------
 
-	$scope.pieLabels = ["Protein", "Fat", "Carbs"];
-	$scope.pieData = [1, 1, 1];
 	
 
 	// ---------------------------------LINE CHART---------------------------------
