@@ -22,6 +22,7 @@
     "fatsecret": "^1.0.2",
     "firebase": "^4.1.5",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.5",
     "moment": "^2.20.1"
   }
 }
