@@ -14,7 +14,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-angular.module("NutritionApp", ["ngRoute", 'chart.js'])
+angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker'])
 .constant("FBUrl", "https://macromaniac-nutrition.firebaseio.com/")
 .config($routeProvider => {
     $routeProvider
@@ -34,11 +34,6 @@ angular.module("NutritionApp", ["ngRoute", 'chart.js'])
     .when("/profile", {
         templateUrl: "partials/profile.html",
         controller: "ProfileCtrl",
-        resolve: { isAuth }
-    })
-    .when("/graph", {
-        templateUrl: "partials/graph.html",
-        controller: "GraphCtrl",
         resolve: { isAuth }
     });
 })

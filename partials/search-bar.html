@@ -1,3 +1,4 @@
+
 <h1>Search Foods</h1>
 <form ng-submit="searchFoods()">
     <input class="searchFoods" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
@@ -6,9 +7,26 @@
 
 <div>
     <h4>If you have manually counted your calories and macros, use this form to update your profile:</h4>
-
     <form ng-submit="addNutrients()">
-        Date Eaten: <input id="date" type="date" ng-model="consumedToday.date"><br>
+        Date: 
+        <div moment-picker="myDate"> </div>
+        <div class="input-group"
+             moment-picker="ctrl.datepicker"
+             format="L"
+             min-view="month"
+             max-view="day"
+             today="true"
+             set-on-select="true"
+             change="formatDate(newValue._i)"
+             >
+            <span class="input-group-addon">
+                <i class="octicon octicon-calendar"></i>
+            </span>
+            <input class="form-control"
+                   placeholder="Select a date"
+                   ng-model="ctrl.datepicker"
+                   ng-model-options="{ updateOn: 'blur' }">
+        </div>
         Calories: <input type="number" ng-model="consumedToday.calories"> <br>
         Protein: <input type="number" ng-model="consumedToday.protein"><br>
         Fat: <input type="number" ng-model="consumedToday.fat"><br>
@@ -17,19 +35,34 @@
     </form>
 </div>
 
-<div id="foodCard">
+<h4>Progress</h4>
+<div id="graphContainer">
+        <!-- PIE -->
+        <div id="pieContainer" ng-model="pieChart">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels">
+            </canvas>
+        </div>
+    <!-- LINE -->
+        <div id="lineContainer">
+            <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
+            chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+        </div>
+</div>
+
+<form id="foodCard">
     <ul>
         <li ng-repeat="food in foods | filter: searchBar">
             <h3>{{food.fields.brand_name}},</h3>
             <h3>{{food.fields.item_name}}:</h3>
-            Calories: {{food.fields.nf_calories}}<br>
-            Protein: {{food.fields.nf_protein}}<br>
-            Fat: {{food.fields.nf_total_fat}}<br>
-            Carbohydrates: {{food.fields.nf_total_carbohydrate}}
-            <button type="submit">Select</button>
+                Calories: <div ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
+                Protein: <div ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
+                Fat: <div ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
+                Carbohydrates: <div ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
+                <button type="submit" class="btn btn-default" ng-click=addDbNutrients(food.fields)>Add Nutrients</button>
         </li>
     </ul>
-</div>
+</form>
 
 
 
