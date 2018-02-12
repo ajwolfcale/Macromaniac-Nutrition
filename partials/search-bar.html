@@ -1,8 +1,8 @@
 
 <h1>Search Foods</h1>
 <form ng-submit="searchFoods()">
-    <input class="searchFoods" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
-    <button type="submit">search</button>
+    <input class="form-control form-control-sm" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
+    <button class="btn btn-default" type="submit">Search</button>
 </form>
 
 <div>
@@ -10,7 +10,7 @@
     <form ng-submit="addNutrients()">
         Date: 
         <div moment-picker="myDate"> </div>
-        <div class="input-group"
+        <div class="input-group form-control"
              moment-picker="ctrl.datepicker"
              format="L"
              min-view="month"
@@ -19,18 +19,18 @@
              set-on-select="true"
              change="formatDate(newValue._i)"
              >
-            <span class="input-group-addon">
+            <!-- <span class="input-group-addon">
                 <i class="octicon octicon-calendar"></i>
-            </span>
+            </span> -->
             <input class="form-control"
                    placeholder="Select a date"
                    ng-model="ctrl.datepicker"
                    ng-model-options="{ updateOn: 'blur' }">
-        </div>
-        Calories: <input type="number" ng-model="consumedToday.calories"> <br>
-        Protein: <input type="number" ng-model="consumedToday.protein"><br>
-        Fat: <input type="number" ng-model="consumedToday.fat"><br>
-        Carbs: <input type="number" ng-model="consumedToday.carbs">
+        </div><br>
+        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.calories" placeholder="Calories..."> <br>
+        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.protein" placeholder="Protein..."><br>
+        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.fat" placeholder="Fats..."><br>
+        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
         <button type="submit" class="btn btn-default">Add Nutrients</button>
     </form>
 </div>

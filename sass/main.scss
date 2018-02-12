@@ -1,3 +1,5 @@
+// TODO: Form needs to display as grid
+
 body{
     background-color: #373239;
     color: rgba(255, 255, 255, 0.863);
@@ -6,6 +8,13 @@ body{
 input{
     background-color: rgba(255, 255, 255, 0.883);
     color: black;
+}
+
+.form-control{
+    width: 400px;
+}
+.inputgroup{
+    border-collapse: collapse;
 }
 
 button{

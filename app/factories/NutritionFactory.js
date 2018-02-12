@@ -31,8 +31,9 @@ angular.module("NutritionApp").factory("NutritionFactory", function ($q, $http, 
 		});
 	};
 
-	return { getFoods, getNutrients };
 
+
+	return { getFoods, getNutrients };
 });
 
 
