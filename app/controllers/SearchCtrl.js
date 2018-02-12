@@ -1,27 +1,17 @@
 'use strict';
 
-angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $window, NutritionFactory, ProfileFactory) {
-	// --------------------------------Get Today's date--------------------------\
-	$scope.today = new Date();
-	$scope.dd = $scope.today.getDate();
-	$scope.mm = $scope.today.getMonth()+1; //January is 0!
-	$scope.yyyy = $scope.today.getFullYear();
+angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $window, $route, $moment, NutritionFactory, ProfileFactory) {
 
 	$scope.$on('$viewContentLoaded', function() {
 		$scope.graphNutrients();
 	});
 
-	if ($scope.dd < 10) {
-		$scope.dd = '0' + $scope.dd;
-	} 
+	// --------------------------------Get Today's date--------------------------
 
-	if ($scope.mm < 10) {
-		$scope.mm = '0' + $scope.mm;
-	} 
-
-	$scope.today = $scope.mm + '/' + $scope.dd + '/' + $scope.yyyy;
+	$scope.today = $moment().format('L');
 
 	// ----------------------------Create FB Object----------------------------------
+
 	$scope.consumedToday = {
 		calories: "",
 		protein: "",
@@ -64,10 +54,13 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 			$scope.consumedToday.carbs = 0;
 		}
 
-		$scope.graphNutrients();
+		// $scope.graphNutrients();
 		
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
-		ProfileFactory.addConsumed($scope.consumedToday);
+		ProfileFactory.addConsumed($scope.consumedToday)
+        .then(() => {
+			$route.reload("/#!/search");
+		});
 	};
 
 // --------------------------------Add API Nutrients to FB--------------------
@@ -102,7 +95,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 		return NutritionFactory.getNutrients()
 			.then(function (results) {
 				let dateSort = _.keyBy(results, 'date');
-				console.log(results);
+				console.log('RESULTS: ', results);
 				let dateResults = results.filter(function(currentDay){
 					return currentDay.date === $scope.consumedToday.date;
 				});
@@ -114,11 +107,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 					proteinArr.push(item.protein);
 					fatArr.push(item.fat);
 					carbArr.push(item.carbs);
-					// console.log("TODAY'S DATE", $scope.todaysDate);
-					// console.log("TOTAL CALORIES: ", calArr.reduce(getTotal));
-					// console.log("TOTAL PROTEIN: ", proteinArr.reduce(getTotal));
-					// console.log("TOTAL FAT: ", fatArr.reduce(getTotal));
-					// console.log("TOTAL CARBS: ", carbArr.reduce(getTotal));
 					$scope.totalCalories = calArr.reduce(getTotal);
 					$scope.totalProtein = proteinArr.reduce(getTotal);
 					$scope.totalFat = fatArr.reduce(getTotal);
@@ -127,13 +115,9 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($scope, $windo
 				});
 			})
 			.catch( (err) => {
-				console.log(err);
+				console.log('ERROR', err);
 			  });	
 	};
-
-
-	// ---------------------------------PIE CHART---------------------------------
-
 	
 
 	// ---------------------------------LINE CHART---------------------------------

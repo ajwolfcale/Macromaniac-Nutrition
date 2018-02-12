@@ -14,8 +14,13 @@ new Promise((resolve, reject) => {
   });
 });
 
-angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker'])
+angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular-momentjs'])
 .constant("FBUrl", "https://macromaniac-nutrition.firebaseio.com/")
+.config(function($momentProvider){
+  $momentProvider
+    .asyncLoading(false)
+    .scriptUrl('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js');
+})
 .config($routeProvider => {
     $routeProvider
     .when("/login", {
@@ -45,4 +50,3 @@ angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker'])
   };
   firebase.initializeApp(authConfig);
 });
-
