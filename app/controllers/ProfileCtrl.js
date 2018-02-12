@@ -8,7 +8,6 @@ angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $loca
 		age: "",
 		weight: "",
 		calGoal: "",
-		// progPic:""
 		date: ""
 	};
 
