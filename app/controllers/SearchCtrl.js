@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory, $rootScope) {
-
+	
 	$scope.$on('$viewContentLoaded', function () {
 		$scope.graphNutrients();
 	});
 
-	// --------------------------------Get Dates--------------------------
+	// --------------------------------Get Dates--------------
 
 	$scope.today = $moment().format('L');
 	$scope.back1Days = $moment().subtract(1, 'days').format('L');
@@ -18,7 +18,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 
 	$scope.lastWeekArr = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, $scope.today];
 
-	// ----------------------------Create FB Object----------------------------------
+	// ----------------------------Create FB Object--------------
 
 	$scope.consumedToday = {
 		calories: "",
@@ -33,7 +33,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		$scope.graphNutrients();
 	};
 
-	// --------------------------------Get Foods from API--------------------------
+	// --------------------------------Get Foods from API----------
 
 	$scope.searchFoods = () => {
 		console.log("pressed enter");
@@ -46,7 +46,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 	};
 
 
-	// ----------------------------Add MANUAL Nutrients to FB--------------------------
+	// ----------------------------Add MANUAL Nutrients to FB---------
 
 	$scope.addNutrients = () => {
 		if ($scope.consumedToday.calories === null) {
@@ -71,7 +71,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 			});
 	};
 
-	// --------------------------------Add API Nutrients to FB--------------------
+	// --------------------------------Add API Nutrients to FB---------
 
 	$scope.addDbNutrients = (food) => {
 		console.log($scope.consumedToday); //empty string
@@ -85,7 +85,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		$scope.addNutrients();
 	};
 
-	// --------------------------------Add Nutrients to FB--------------------------
+	// --------------------------------Add Nutrients to FB---------------
 
 	let calArr = [];
 	let proteinArr = [];
@@ -137,7 +137,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 			});
 
 		graphPastCals()
-
 			.then(function (lastWeek) {
 				let lastWeekCals = [];
 				lastWeek.forEach(function (eachDay) {
@@ -147,8 +146,10 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 					});
 					lastWeekCals.push(_.sum(eachDayCal));
 				});
+				// getCalGoal();
+				// console.log('Calorie Goal: ', $scope.calGoal);
 				$scope.lineData = [
-					// [userGoal, userGoal, userGoal, userGoal, userGoal, userGoal, userGoal],
+					[$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal],
 					lastWeekCals
 				];
 			});
@@ -156,8 +157,21 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
 		$scope.pieData = [1, 1, 1];
 	};
-	// ---------------------------------LINE CHART---------------------------------
+// ---------------------------------LINE CHART---------
 
+let getCalGoal = (goal) => {
+	return ProfileFactory.getProfile()
+		.then(function (results) {
+			$scope.calGoal = results[0].calGoal;
+			console.log('Calorie Goal: ', $scope.calGoal);
+			return $scope.calGoal;
+		})
+		.catch((err) => {
+			console.log('ERROR', err);
+		});
+};
+
+getCalGoal();
 
 	$scope.lineLabels = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, `Today: ${$scope.today}`];
 	$scope.lineSeries = ['Calorie Goal', 'Calories Eaten'];
@@ -166,7 +180,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		[2000, 2000, 2000, 2000, 2000, 2000, 2000]
 	];
 
-	// ProfileFactory.getProfile();
 
 	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
 	$scope.options = {

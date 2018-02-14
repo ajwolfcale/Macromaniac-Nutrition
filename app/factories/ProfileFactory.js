@@ -33,21 +33,24 @@ angular.module("NutritionApp").factory("ProfileFactory", function (FBUrl, $q, $h
         });
     };
 
-    // let getProfile = (uid) => {
-    //     return $q(function (resolve, reject) {
-    //         // let currentUser = AuthFactory.getCurrentUser();
-    //         $http.get(`${FBUrl}/users.json?orderBy="uid"&equalTo=${uid}`)
-    //         .then(function(uid){
-    //             resolve(uid);
-    //             console.log("USER PROFILE: ",uid);
-    //         })
-    //         .catch(function(error){
-    //             reject(error);
-    //         });
-    //     });
-    // };
+    let getProfile = (user) => {
+        return $q((resolve, reject) => {
+            $http
+              .get(`${FBUrl}/users.json?orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`)
+              .then(({ data }) => {
+                console.log("USER ID", data);
+                let userIdArr = Object.keys(data).map(userKey => {
+                  console.log("user", userKey);
+                  data[userKey].id = userKey;
+                  return data[userKey];
+                });
+                console.log("Current User: ", userIdArr);
+                resolve(userIdArr);
+            });
+        });
+    };
 
 
-    return { addNewProfile, addConsumed };
+    return { addNewProfile, addConsumed, getProfile };
 });
 
