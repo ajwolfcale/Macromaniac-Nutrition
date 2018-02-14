@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("NutritionApp").controller("LoginCtrl", function ($scope, AuthFactory, FBCreds, $window) {
+angular.module("NutritionApp").controller("LoginCtrl", function ($scope, AuthFactory, FBCreds, $window, $location) {
 
 	$scope.login = () => {
 		AuthFactory.loginUser($scope.account).then(user => {
@@ -16,9 +16,14 @@ angular.module("NutritionApp").controller("LoginCtrl", function ($scope, AuthFac
 		AuthFactory.logoutUser()
 			.then((data) => {
 				console.log("logged out", data);
-				$window.location.href = "/#!/login";
+				$window.location.href = "#!/login";
 			});
 	};
+
+
+	$scope.go = function ( path ) {
+		$location.path( path );
+	  };
 
 	$scope.register = () => {
 		AuthFactory.createUser($scope.account).then(user => {
