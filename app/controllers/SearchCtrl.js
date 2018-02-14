@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory, $rootScope) {
-	
+
 	$scope.$on('$viewContentLoaded', function () {
 		$scope.graphNutrients();
+
 	});
 
 	// --------------------------------Get Dates--------------
@@ -61,8 +62,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		if ($scope.consumedToday.carbs === null) {
 			$scope.consumedToday.carbs = 0;
 		}
-
-		// $scope.graphNutrients();
 
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
 		ProfileFactory.addConsumed($scope.consumedToday)
@@ -136,6 +135,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				$scope.pieData = [$scope.totalProtein, $scope.totalFat, $scope.totalCarbs];
 			});
 
+		$scope.getCalGoal();
 		graphPastCals()
 			.then(function (lastWeek) {
 				let lastWeekCals = [];
@@ -146,40 +146,31 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 					});
 					lastWeekCals.push(_.sum(eachDayCal));
 				});
-				// getCalGoal();
-				// console.log('Calorie Goal: ', $scope.calGoal);
 				$scope.lineData = [
-					[$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal,$scope.calGoal],
+					[$scope.calGoal, $scope.calGoal, $scope.calGoal, $scope.calGoal, $scope.calGoal, $scope.calGoal, $scope.calGoal],
 					lastWeekCals
 				];
 			});
-
 		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
 		$scope.pieData = [1, 1, 1];
 	};
-// ---------------------------------LINE CHART---------
+	// ---------------------------------LINE CHART---------
 
-let getCalGoal = (goal) => {
-	return ProfileFactory.getProfile()
-		.then(function (results) {
-			$scope.calGoal = results[0].calGoal;
-			console.log('Calorie Goal: ', $scope.calGoal);
-			return $scope.calGoal;
-		})
-		.catch((err) => {
-			console.log('ERROR', err);
-		});
-};
+	$scope.getCalGoal = (goal) => {
+		return ProfileFactory.getProfile()
+			.then(function (results) {
+				$scope.calGoal = results[0].calGoal;
+				console.log('Calorie Goal: ', $scope.calGoal);
+				return $scope.calGoal;
+			})
+			.catch((err) => {
+				console.log('ERROR', err);
+			});
+	};
 
-getCalGoal();
 
 	$scope.lineLabels = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, `Today: ${$scope.today}`];
 	$scope.lineSeries = ['Calorie Goal', 'Calories Eaten'];
-	$scope.lineData = [
-		[2000, 2000, 2000, 2000, 2000, 2000, 2000],
-		[2000, 2000, 2000, 2000, 2000, 2000, 2000]
-	];
-
 
 	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
 	$scope.options = {
