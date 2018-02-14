@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $location, $window, ProfileFactory) {
+angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $location, $window, ProfileFactory, $rootScope) {
 
 	$scope.userProfile = {
 		firstName: "",
@@ -8,7 +8,6 @@ angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $loca
 		age: "",
 		weight: "",
 		calGoal: "",
-		// progPic:""
 		date: ""
 	};
 
@@ -21,7 +20,6 @@ angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $loca
 				$window.location.href = "/#!/search";
 			});
 	};
-
 
 
 });

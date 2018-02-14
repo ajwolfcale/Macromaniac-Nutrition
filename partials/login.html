@@ -1,19 +1,20 @@
-<h1>Login Here</h1>
-<section class="auth-form">
-    <div>
-        Email:
-        <input type="text" autofocus="true" ng-model="account.email">
+<h1>Sign in</h1>
+
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ng-model="account.email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
-    <div>
-        Password:
-        <input type="password" ng-model="account.password">
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="account.password">
     </div>
-    <div>
-        <button class="btn btn-default" ng-click="login()">Login</button>
-        <button class="btn btn-default" ng-click="logout()">Logout</button>
-        <p>
-            If you do not have an account, you can register here! 
-            <button class="btn btn-default" ng-click="register()">Register</button>
-        </p>
-    </div>
-</section>
+    <button class="btn btn-default" ng-click="login()">Login</button>
+    <button class="btn btn-default" ng-click="logout()">Logout</button>
+</form>
+
+<div>
+    <h3>I'm new here</h3>
+    <p><a >Create an account</a></p>
+</div>

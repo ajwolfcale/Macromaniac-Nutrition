@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="lib/node_modules/angular-moment-picker/dist/angular-moment-picker.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <title>Macromaniac Nutrition</title>
+</head>  
 
-    <link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="lib/node_modules/angular-moment-picker/dist/angular-moment-picker.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <title>Macromaniac Nutrition</title>
-</head>    
-<body ng-app="NutritionApp">
+  <body ng-app="NutritionApp">
+    <header>
+      <div ng-include=" 'partials/navbar.html' "></div>
+    </header>
+    <div class="container">
+      <main>    
+        <div ng-view></div>
+      </main>
+    </div> 
 
 
-    
-    <!-- <div ng-include='partials/navbar.html'></div> -->
-    <div ng-view></div>
-      
 
 
-    <!-- ANGULAR -->
+
+
+
+      <!-- ANGULAR -->
     <script src="lib/node_modules/angular/angular.min.js"></script>
     <script src="lib/node_modules/angular-route/angular-route.min.js"></script>  
     <!-- ANGULAR.JS CHARTS.JS -->
@@ -28,6 +35,9 @@
     <script src="lib/node_modules/lodash/lodash.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
     <script src="lib/node_modules/angular-moment-picker/dist/angular-moment-picker.min.js"></script>
+    <script src="lib/node_modules/moment/min/moment.min.js"></script>
+    <script src="lib/node_modules/angular-momentjs/angular-momentjs.min.js"></script>
+
     <!-- FIREBASE -->
     <script src="lib/node_modules/firebase/firebase.js"></script>
     <!-- MY STUFF -->
@@ -39,11 +49,10 @@
     <script src="app/factories/NutritionFactory.js"></script>
     <script src="app/factories/ProfileFactory.js"></script>
     <!-- Controllers -->
-    <script src="app/controllers/NavBarCtrl.js"></script>
+    <script src="app/controllers/NavCtrl.js"></script>
     <script src="app/controllers/LoginCtrl.js"></script>
     <script src="app/controllers/ProfileCtrl.js"></script>
     <script src="app/controllers/SearchCtrl.js"></script>
-</body>
+  </body>
+ 
 </html>
-
-

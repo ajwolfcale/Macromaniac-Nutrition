@@ -17,13 +17,10 @@ angular.module("NutritionApp").factory("AuthFactory", (FBCreds, $q) => {
     };
   
     authObj.isAuthenticated = () => {
-      console.log("isAuthenticated called AuthFactory");
       return $q((resolve, reject) => {
-        console.log("firing onAuthStateChanged");
         firebase.auth().onAuthStateChanged( (user) => {
-          console.log("onAuthStateChanged finished");
           if (user) {
-            console.log("user", user);
+            // console.log("user", user);
             currentUser = user.uid;
             resolve(true);
           } else {
