@@ -1,9 +1,28 @@
 
 <h1>Search Foods</h1>
-<form ng-submit="searchFoods()" class ="searchWrapper">
-    <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
-    <button class="btn btn-default" type="button">Search</button>
-</form>
+<div class="allAPI">
+    <form ng-submit="searchFoods()" class ="searchWrapper">
+        <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
+        <button class="btn btn-default" type="button">Search</button>
+    </form>
+    <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
+    <div class="foodBox">
+        <form id="foodCard">
+            <ul id="foodItems" class="list-group list-group-flush">
+                <li class="foodResults list-group-item" ng-repeat="food in foods | filter: searchBar">
+                    <input class="cardLine" type="image" src="images/add.png" ng-click=addDbNutrients(food.fields)>
+                    <h6 class="cardLine foodBrand">{{food.fields.brand_name}}</h6>
+                    <p class="cardLine foodName">{{food.fields.item_name}}:</p>
+                    Calories: <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
+                    Protein: <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
+                    Fat: <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
+                    Carbohydrates: <div class="cardLine foodDeets" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
 
 <div class="formWrapper">
     <h4>If you have manually counted your calories and macros, use this form to update your profile:</h4>
@@ -49,21 +68,7 @@
             </canvas>
         </div>
 </div>
-<div class="foodBox">
-    <form id="foodCard">
-        <ul id="foodItems" class="list-group list-group-flush">
-            <li class="foodResults list-group-item" ng-repeat="food in foods | filter: searchBar">
-                <input class="cardLine" type="image" src="images/add.png" ng-click=addDbNutrients(food.fields)>
-                <h4 class="cardLine">{{food.fields.brand_name}}</h4>
-                <h6 class="cardLine">{{food.fields.item_name}}:</h6>
-                Calories: <div class="cardLine" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
-                Protein: <div class="cardLine" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
-                Fat: <div class="cardLine" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
-                Carbohydrates: <div class="cardLine" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
-            </li>
-        </ul>
-    </form>
-</div>
+
 
 
 
