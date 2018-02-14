@@ -1,21 +1,21 @@
 'use strict';
 
-angular.module("NutritionApp").factory("ProfileFactory", function(FBUrl, $q, $http){
-    
+angular.module("NutritionApp").factory("ProfileFactory", function (FBUrl, $q, $http) {
+
     let addNewProfile = (userProfile) => {
         return $q((resolve, reject) => {
             $http
                 .post(`${FBUrl}/users.json`, JSON.stringify(userProfile))
                 .then(data => {
-                console.log("Updated user's profile", data.data.name);
-                resolve(data.data);
+                    console.log("Updated user's profile", data.data.name);
+                    resolve(data.data);
                 })
                 .catch(error => {
-                console.log(error);
-                reject(error);
+                    console.log(error);
+                    reject(error);
                 });
-            });
-        };
+        });
+    };
 
     let addConsumed = (data) => {
         return $q((resolve, reject) => {
@@ -23,17 +23,31 @@ angular.module("NutritionApp").factory("ProfileFactory", function(FBUrl, $q, $ht
                 .post(`${FBUrl}/${data.uid}/nutrientsToday.json`, JSON.stringify(data))
                 .then(data => {
                     // console.log(data);
-                // console.log("Added User's nutrients", data.data);
-                resolve(data.data);
+                    // console.log("Added User's nutrients", data.data);
+                    resolve(data.data);
                 })
                 .catch(error => {
-                console.log(error);
-                reject(error);
+                    console.log(error);
+                    reject(error);
                 });
-            });
-        };
+        });
+    };
+
+    // let getProfile = (uid) => {
+    //     return $q(function (resolve, reject) {
+    //         // let currentUser = AuthFactory.getCurrentUser();
+    //         $http.get(`${FBUrl}/users.json?orderBy="uid"&equalTo=${uid}`)
+    //         .then(function(uid){
+    //             resolve(uid);
+    //             console.log("USER PROFILE: ",uid);
+    //         })
+    //         .catch(function(error){
+    //             reject(error);
+    //         });
+    //     });
+    // };
 
 
-        return { addNewProfile, addConsumed };
-    });
+    return { addNewProfile, addConsumed };
+});
 

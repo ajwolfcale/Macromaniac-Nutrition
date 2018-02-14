@@ -1,8 +1,21 @@
 // TODO: Form needs to display as grid
 
-body{
-    background-color: #373239;
-    color: rgba(255, 255, 255, 0.863);
+//-------------------------------NAV BAR------------------------------
+
+.navbar{
+    box-shadow: 0 1px 3px rgba(225, 219, 43, 0.623);
+    margin-bottom: 25px;
+}
+.bg-light {
+    background-color: #812ea58e; 
+}
+
+
+//-------------------------------BODY/GRID------------------------------
+
+main{
+    background-color: rgba(255, 255, 255, 0.863);
+    color: #373239;
 }
 
 input{
@@ -10,32 +23,31 @@ input{
     color: black;
 }
 
-.form-control{
-    width: 400px;
-}
-.inputgroup{
-    border-collapse: collapse;
-}
-
-button{
-    background-color: #E1DB2B;
-    color: #373239;
+#searchBar{
+    width: 600px;
+    margin-bottom: 8px;
 }
 
 h1{
-    color: #E1DB2B;
+    color: #373239;
+    padding-left: 15px;
 }
 
 h3{
     border-bottom: 1px solid #E1DB2B
 }
 
-li{
-    display: inline-block;
-    border: 1px dotted rgba(255, 255, 255, 0.883);
-    width: 150px;
-    margin: 15px;
-    border-radius: 10p
+h4{
+    padding-left: 15px;
+}
+
+.foodBox{
+    height: 500px;
+    overflow: scroll;
+}
+
+.cardLine{
+    display: inline;
 }
 
 .searchFoods{
@@ -57,3 +69,12 @@ li{
     height: 400;
     width: 800px;
 }
+
+#addNutrients{
+    margin-top: 8px;
+}
+
+#regBtn{
+    margin-top: 8px;
+}
+

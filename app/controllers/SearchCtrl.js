@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory) {
-	
-	$scope.$on('$viewContentLoaded', function() {
+angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory, $rootScope) {
+
+	$scope.$on('$viewContentLoaded', function () {
 		$scope.graphNutrients();
 	});
 
@@ -16,7 +16,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 	$scope.back5Days = $moment().subtract(5, 'days').format('L');
 	$scope.back6Days = $moment().subtract(6, 'days').format('L');
 
-	$scope.lastWeekArr = [$scope.today, $scope.back1Days, $scope.back2Days, $scope.back3Days, $scope.back4Days, $scope.back5Days, $scope.back6Days];
+	$scope.lastWeekArr = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, $scope.today];
 
 	// ----------------------------Create FB Object----------------------------------
 
@@ -45,33 +45,33 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 			.catch(err => console.error(err));
 	};
 
-   
-// ----------------------------Add MANUAL Nutrients to FB--------------------------
+
+	// ----------------------------Add MANUAL Nutrients to FB--------------------------
 
 	$scope.addNutrients = () => {
-		if ($scope.consumedToday.calories === null){
+		if ($scope.consumedToday.calories === null) {
 			$scope.consumedToday.calories = 0;
 		}
-		if ($scope.consumedToday.protein === null){
+		if ($scope.consumedToday.protein === null) {
 			$scope.consumedToday.protein = 0;
-		} 
-		if ($scope.consumedToday.fat === null){
+		}
+		if ($scope.consumedToday.fat === null) {
 			$scope.consumedToday.fat = 0;
 		}
-		if ($scope.consumedToday.carbs === null){
+		if ($scope.consumedToday.carbs === null) {
 			$scope.consumedToday.carbs = 0;
 		}
 
 		// $scope.graphNutrients();
-		
+
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
 		ProfileFactory.addConsumed($scope.consumedToday)
-        .then(() => {
-			$route.reload("/#!/search");
-		});
+			.then(() => {
+				$route.reload("/#!/search");
+			});
 	};
 
-// --------------------------------Add API Nutrients to FB--------------------
+	// --------------------------------Add API Nutrients to FB--------------------
 
 	$scope.addDbNutrients = (food) => {
 		console.log($scope.consumedToday); //empty string
@@ -81,48 +81,48 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		$scope.consumedToday.carbs = food.nf_total_carbohydrate;
 
 		console.log($scope.consumedToday); //overwritten
-		
+
 		$scope.addNutrients();
 	};
 
-// --------------------------------Add Nutrients to FB--------------------------
+	// --------------------------------Add Nutrients to FB--------------------------
 
-	let calArr =[];
-	let proteinArr =[];
-	let fatArr =[];
-	let carbArr =[];
+	let calArr = [];
+	let proteinArr = [];
+	let fatArr = [];
+	let carbArr = [];
 
-	let getNutrientsForGraph = (date) =>{
+	let getNutrientsForGraph = (date) => {
 		return NutritionFactory.getNutrients()
 			.then(function (results) {
-				let dateResults = results.filter(function(currentDay){
+				let dateResults = results.filter(function (currentDay) {
 					return currentDay.date === date;
 				});
-				console.log('date Results', dateResults);
+				// console.log('date Results', dateResults);
 				return dateResults;
 			})
-			.catch( (err) => {
+			.catch((err) => {
 				console.log('ERROR', err);
-			});	
-		};
-
-
-		let graphPastCals = () => {
-			let promiseArr = [];
-			for (let i = 0; i < $scope.lastWeekArr.length; i++){
-				promiseArr.push(getNutrientsForGraph($scope.lastWeekArr[i]));
-			}
-			return $q.all(promiseArr)
-			.then(function (data) {
-				 return data;
 			});
-		};
+	};
 
-		$scope.graphNutrients = () => {
-		
-			getNutrientsForGraph($scope.consumedToday.date)
-			.then(function (chartData){
-				console.log(chartData);
+
+	let graphPastCals = () => {
+		let promiseArr = [];
+		for (let i = 0; i < $scope.lastWeekArr.length; i++) {
+			promiseArr.push(getNutrientsForGraph($scope.lastWeekArr[i]));
+		}
+		return $q.all(promiseArr)
+			.then(function (data) {
+				return data;
+			});
+	};
+
+	$scope.graphNutrients = () => {
+
+		getNutrientsForGraph($scope.consumedToday.date)
+			.then(function (chartData) {
+				// console.log(chartData);
 				let nutrientsByDate = chartData.map((item) => {
 					calArr.push(item.calories);
 					proteinArr.push(item.protein);
@@ -135,26 +135,27 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				$scope.totalCarbs = _.sum(carbArr);
 				$scope.pieData = [$scope.totalProtein, $scope.totalFat, $scope.totalCarbs];
 			});
-			
-			graphPastCals()
-			.then(function (lastWeek){
+
+		graphPastCals()
+
+			.then(function (lastWeek) {
 				let lastWeekCals = [];
-				lastWeek.forEach(function (eachDay){
+				lastWeek.forEach(function (eachDay) {
 					let eachDayCal = [];
-					eachDay.forEach(function (dailyTotals){
+					eachDay.forEach(function (dailyTotals) {
 						eachDayCal.push(dailyTotals.calories);
 					});
 					lastWeekCals.push(_.sum(eachDayCal));
 				});
 				$scope.lineData = [
-					[2000, 2000, 2000, 2000, 2000, 2000, 2000],
+					// [userGoal, userGoal, userGoal, userGoal, userGoal, userGoal, userGoal],
 					lastWeekCals
 				];
 			});
-			
-			$scope.pieLabels = ["Protein", "Fat", "Carbs"];
-			$scope.pieData = [1, 1, 1];
-		};
+
+		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
+		$scope.pieData = [1, 1, 1];
+	};
 	// ---------------------------------LINE CHART---------------------------------
 
 
@@ -164,7 +165,8 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		[2000, 2000, 2000, 2000, 2000, 2000, 2000],
 		[2000, 2000, 2000, 2000, 2000, 2000, 2000]
 	];
-	
+
+	// ProfileFactory.getProfile();
 
 	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
 	$scope.options = {
@@ -179,4 +181,4 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 			]
 		}
 	};
-	});
+});
