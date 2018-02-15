@@ -1,69 +1,93 @@
 // TODO: Form needs to display as grid
 
+// -------Fonts--------------------
+// font-family: 'Scope One', serif;
+// font-family: 'Open Sans Condensed', sans-serif;
+
 //-------------------------------NAV BAR------------------------------
 
 .navbar{
     box-shadow: 0 1px 3px rgba(225, 219, 43, 0.623);
     margin-bottom: 25px;
 }
-.bg-light {
-    background-color: #812ea58e; 
-}
-
 
 //-------------------------------BODY/GRID------------------------------
 
-main{
-    background-color: rgba(255, 255, 255, 0.863);
-    color: #373239;
+body{
+    background-color: black;
+    color: rgba(255, 255, 255, 0.863);
+    font-family: 'Advent Pro', sans-serif; 
 }
 
 input{
-    background-color: rgba(255, 255, 255, 0.883);
     color: black;
+    font-family: 'Advent Pro', sans-serif;
 }
 
 .allAPI{
     display: inline;
 }
-
+.searchWrapper{
+    width: 30%;
+    margin-right:0;
+}
 #searchBar{
-    width: 45%;
+    width: 100%;
     margin-bottom: 8px;
+    background-color: rgba(255, 255, 255, 0.883);
+
 }
 
 h1{
     color: #373239;
     padding-left: 15px;
+    color: rgba(255, 255, 255, 0.883);
 }
 
 h3{
-    border-bottom: 1px solid #E1DB2B
+    border-bottom: 1px solid #E1DB2B;
+    font-family: 'Advent Pro', sans-serif;
+    color: rgba(255, 255, 255, 0.883);
 }
 
 h4{
     padding-left: 15px;
+    font-family: 'Advent Pro', sans-serif;
+    color: rgba(255, 255, 255, 0.883);
 }
+
+p{
+    font-family: 'Advent Pro', sans-serif;
+    color: rgba(255, 255, 255, 0.883);
+}
+
+
 // -----------------------------------FOOD API RESULTS
 .foodBox{
-    border: .5px solid rgba(128, 128, 128, 0.671);
-    box-shadow: 0px 2px 2px rgba(168, 168, 168, 0.972);
-    border-radius: 8px;
-    height: 200px;
-    width: 45%;
+    margin: 20px;
+    border-radius: 5px;
+    height: 500px;
+    width: 85%;
     overflow: scroll;
+
 }
 
 .cardLine{
     display: inline;
 }
 
+
 .foodDeets{
     font-size: .75em;
 }
 
-.searchFoods{
-    width: 300px;
+.foodResults:nth-child(even){
+    background-color: black;
+    color: white;
+}
+.foodResults:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0.603);
+    color: black;
 }
 
 #graphContainer{
@@ -90,3 +114,6 @@ h4{
     margin-top: 8px;
 }
 
+// .horizontal-collapse {
+//     height: 500px;
+//   }

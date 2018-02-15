@@ -1,18 +1,20 @@
 
 <h1>Search Foods</h1>
+
 <div class="allAPI">
     <form ng-submit="searchFoods()" class ="searchWrapper">
         <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
-        <button class="btn btn-default" type="button">Search</button>
+        <button class="btn btn-default" type="button" ng-click="isCollapsed = !isCollapsed">Search</button>
     </form>
     <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
-    <div class="foodBox">
+    <div uib-collapse="!isCollapsed" class="foodBox">
         <form id="foodCard">
             <ul id="foodItems" class="list-group list-group-flush">
                 <li class="foodResults list-group-item" ng-repeat="food in foods | filter: searchBar">
-                    <input class="cardLine" type="image" src="images/add.png" ng-click=addDbNutrients(food.fields)>
-                    <h6 class="cardLine foodBrand">{{food.fields.brand_name}}</h6>
-                    <p class="cardLine foodName">{{food.fields.item_name}}:</p>
+                    <input class="cardLine" type="image" src="images/add1.png" ng-click=addDbNutrients(food.fields)>
+                    <h6 class="cardLine foodBrand"> {{food.fields.brand_name}} | </h6>
+                    <h6 class="cardLine foodName">{{food.fields.item_name}}:</h6>
+                    Serving Size: <div class="cardLine foodDeets">{{food.fields.nf_serving_size_qty}}</div>
                     Calories: <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
                     Protein: <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
                     Fat: <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
@@ -22,11 +24,14 @@
         </form>
     </div>
 </div>
-<!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
 
-<div class="formWrapper">
-    <h4>If you have manually counted your calories and macros, use this form to update your profile:</h4>
-    <form ng-submit="addNutrients()">
+<!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
+<hr>
+<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse Vertically</button>
+<hr>
+<div uib-collapse="isCollapsed" class="formWrapper">
+    <!-- <h4>If you have manually counted your calories and macros, use this form to update your profile:</h4> -->
+    <form class="well well-lg" ng-submit="addNutrients()">
         Date: 
         <div moment-picker="myDate"> </div>
         <div class="input-group form-control form-control-sm"
@@ -70,9 +75,12 @@
 </div>
 
 
-
-
-
+<!-- <canvas id="bar" class="chart chart-bar"
+chart-data="data" chart-labels="labels" 
+chart-colors = "colors" chart-options="labelOptions"
+>
+</canvas>
+ -->
 
 
 
