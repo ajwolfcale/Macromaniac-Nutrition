@@ -29,7 +29,7 @@ angular.module("NutritionApp").controller("LoginCtrl", function ($scope, AuthFac
 		AuthFactory.createUser($scope.account).then(user => {
 			console.log("You have created a new user", user);
 			// this should auto-login....
-			$scope.login();
+			// $scope.login();
 			$window.location.href = "/#!/profile";
 			console.log("you have registered and logged in as a new user");
 		})

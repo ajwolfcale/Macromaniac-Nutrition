@@ -22,8 +22,7 @@ angular.module("NutritionApp").factory("ProfileFactory", function (FBUrl, $q, $h
             $http
                 .post(`${FBUrl}/${data.uid}/nutrientsToday.json`, JSON.stringify(data))
                 .then(data => {
-                    // console.log(data);
-                    // console.log("Added User's nutrients", data.data);
+                    console.log("Added User's nutrients", data.data);
                     resolve(data.data);
                 })
                 .catch(error => {

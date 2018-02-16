@@ -1,18 +1,96 @@
 // TODO: Form needs to display as grid
 
-// -------Fonts--------------------
+// -------Fonts/colors--------------------
 // font-family: 'Scope One', serif;
 // font-family: 'Open Sans Condensed', sans-serif;
+// #337ab7
 
 //-------------------------------NAV BAR------------------------------
+nav{
+    a {
+        color: white;
+        font-size: 1.5em;
+    }
 
-.navbar{
-    box-shadow: 0 1px 3px rgba(225, 219, 43, 0.623);
-    margin-bottom: 25px;
+    box-shadow: 0 3px 3px rgba(226, 224, 151, 0.623);
+    margin-bottom: 20px;
+    background-color: black;
+}
+.navbar-brand{
+    font-size: 2em;
+    background-color: black;
 }
 
-//-------------------------------BODY/GRID------------------------------
+.navbar-brand:hover{
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -9999px;
+}
 
+.navbar-brand:hover:after{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: white;
+    text-shadow: 0px 5px 8px #E1DB2B;
+    font-size: 2.6em;
+    content: "M.N.";   
+    display: inline-block;
+    position:absolute;
+    text-indent: 9790px;
+}
+.navbar-brand:hover:active{
+    text-shadow: 5px 8px 15px #E1DB2B;
+    color: white;
+}
+
+.nav-item.nav-link.active:hover{
+    color: white; 
+    border-right: 1px solid rgba(226, 224, 151, 0.623);
+    border-left: 1px solid rgba(226, 224, 151, 0.623);
+    background-color: rgba(63, 63, 63, 0.486);
+}
+
+//-------------------------------HOME------------------------------
+.intro {
+    font-size: 6em;
+    border-left: 1px solid rgba(226, 224, 151, 0.623);
+    border-bottom: 1px solid rgba(226, 224, 151, 0.623);
+    text-shadow: 2px 0px 5px #E1DB2B;
+    margin-bottom: 20px;
+}
+.jumbotron{
+    background-color: rgba(226, 224, 151, 0.623);
+    color: #373239;
+    p {
+        display: flex;
+        justify-content: center;
+        color: #373239;
+        font-size: 2em;
+    }
+}
+
+.jumbotron:hover{
+    background-color: rgba(255, 255, 255, 0.808);
+    box-shadow: 0px 8px 20px rgba(226, 224, 151, 0.623);
+    p {
+        // display: flex;
+        font-style: bold;
+        // font-size: 2em;
+        display: inline-block;
+        overflow: hidden;
+        text-indent: -9999px;
+    }
+    p:after{
+        display: inline-block;
+        font-style: bold;
+        position:absolute;
+        font-size: 1.1em;
+        text-indent: 9889px;
+        content: "If you're new, click here to create your own profile and start tracking your nutrient intake!"
+    }
+}
+
+// -----------------------------General Styling---------------------------------
 body{
     background-color: black;
     color: rgba(255, 255, 255, 0.863);
@@ -23,19 +101,42 @@ input{
     color: black;
     font-family: 'Advent Pro', sans-serif;
 }
+// -----------------------------Search---------------------------------
 
 .allAPI{
     display: inline;
 }
+
 .searchWrapper{
     width: 30%;
     margin-right:0;
 }
+
+.date-wrapper{
+    width: 30%;
+    margin-right:0;
+}
+
+input-group{
+    width: 100%;
+    margin-bottom: 8px;
+    background-color: white;
+}
+
 #searchBar{
     width: 100%;
     margin-bottom: 8px;
-    background-color: rgba(255, 255, 255, 0.883);
+    background-color: white;
 
+}
+// ---------------------------------Manual Inputs--------------------
+.formWrapper{
+    width: 30%;
+    margin-right:0;
+}
+
+.manualForm{
+    background-color: white;    
 }
 
 h1{
@@ -68,27 +169,38 @@ p{
     border-radius: 5px;
     height: 500px;
     width: 85%;
-    overflow: scroll;
-
+    overflow-y: scroll;
 }
 
 .cardLine{
     display: inline;
 }
 
-
 .foodDeets{
     font-size: .75em;
 }
 
-.foodResults:nth-child(even){
+ 
+.list-group-item:nth-child(even){
     background-color: black;
     color: white;
 }
-.foodResults:nth-child(odd){
+.list-group-item:nth-child(odd){
     background-color: rgba(255, 255, 255, 0.603);
     color: black;
 }
+
+.list-group-item:hover:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0.801);
+    border: 1px solid blue;
+    box-shadow: 10px 10px 10px 10px rgba(52, 107, 170, 0.794);
+}
+
+.list-group-item:hover:nth-child(even){
+    background-color: rgba(151, 145, 145, 0.829);
+    box-shadow: 3px 3px 3px 3px rgba(240, 233, 48, 0.794);
+}
+
 
 #graphContainer{
     display: inline-flex;
@@ -96,8 +208,9 @@ p{
 
 #doughnut{
     padding-top: 20px;
-    height: 650px;
-    width: 650px;
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
 }
 
 #lineContainer{
@@ -114,6 +227,30 @@ p{
     margin-top: 8px;
 }
 
-// .horizontal-collapse {
-//     height: 500px;
+
+
+// -------------------ROTATE-----------------
+
+//   .box:hover {
+//     transform: rotate(360deg);
 //   }
+//   .rotate {
+//     transition: all 0.1s ease-in-out;
+//   }
+//   .rotate:hover {
+//     transition: all 1s ease-in-out;
+//   }
+
+// -------------------ROTATE on Button Click-----------------
+
+.box {
+    margin: 20px auto;
+  }
+  .circle {
+    transform: rotate(1080deg);
+    margin: 20px auto;
+  }
+  .rotate {
+    transition: all 1.5s ease-in-out;
+  }
+
