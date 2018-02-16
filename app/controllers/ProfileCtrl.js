@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $location, $window, ProfileFactory, $rootScope) {
+angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $window, ProfileFactory) {
 
 	$scope.userProfile = {
 		firstName: "",
@@ -23,4 +23,3 @@ angular.module("NutritionApp").controller("ProfileCtrl", function ($scope, $loca
 
 
 });
-

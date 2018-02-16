@@ -152,15 +152,10 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				];
 			});
 		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
-		$scope.pieData = [1, 1, 1];
-		// $scope.options = {
-		// 	title: {
-		// 		display: true,
-		// 		text: 'Daily Macronutrient Count',
-		// 		fontColor: 'white',
-		// 		fontSize: 16
-		// 	  }
-		// };
+		// $scope.pieData = [1, 1, 1]
+
+		
+		
 	};
 	// ---------------------------------LINE CHART---------
 
@@ -175,22 +170,20 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				console.log('ERROR', err);
 			});
 	};
-
-
+// --------------------------------CHART STYLING-------------------
+	$scope.boxClass = true;
+	$scope.hoverColors = ['#f8ec00','#FFFFFF', '#c1faec'];
+	$scope.pieColors = ['#DCD525', '#353037', '#C7C5B9', '#FFFFFF'];
+	$scope.colors = ['#FFFFFF', '#DCD525', '#717984', '#F1C40F'];	
 	$scope.lineLabels = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, `Today: ${$scope.today}`];
 	$scope.lineSeries = ['Calorie Goal', 'Calories Eaten'];
-
 	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-	$scope.colors = [{ 
-		borderColor: 'white',
-		backgroundColor: 'rgba(255, 255, 255, 0.445)',
-	}];
 	$scope.options = {
 		title: {
 			display: true,
 			text: 'Calorie Intake vs. Calorie Goal',
 			fontColor: 'white',
-			fontSize: 25,
+			fontSize: 30,
 			fontFamily: "'Advent Pro', sans-serif"
 		  },
 		scales: {
@@ -214,52 +207,8 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 							fontFamily: "'Advent Pro', sans-serif"
 						}
 					}]
-		}
+		}	
 	};
 });
 
 
-// $scope.options = {
-//     title: {
-//       display: true,
-//       text: 'Amount of Blue Stuff in the Warehouse',
-//       fontColor: 'lightblue',
-//       fontSize: 16
-//     },
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true,
-//           min: 0,
-//           max: 400
-//         }
-//       }]
-//     },
-//   };
-
-
-
-
-// // $scope.chartOptions = 
-
-// // options for labels on x an y axes 
-// $scope.labelOptions = {
-
-// 	scales: { 
-// 		yAxes: [{
-// 			ticks: {
-// 				fontColor: "white",
-// 				fontSize : 40,
-// 				stepSize: 1,
-// 				beginAtZero: true
-// 			}
-// 		}],
-// 		xAxes : [{
-// 			ticks: {
-// 				fontColor: 'white',
-// 				// fontSize: 20,
-// 				fontFamily: 'Futura'
-// 			}
-// 		}]
-// 	}
-// };

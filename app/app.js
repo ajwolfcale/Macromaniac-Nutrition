@@ -24,7 +24,8 @@ angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular
 .config($routeProvider => {
     $routeProvider
     .when("/", {
-      templateUrl: "partials/home.html"
+      templateUrl: "partials/home.html",
+      controller: "LoginCtrl"
     })
     .when("/login", {
         templateUrl: "partials/login.html",
