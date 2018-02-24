@@ -21,9 +21,9 @@ angular.module("NutritionApp").controller("LoginCtrl", function ($scope, AuthFac
 	};
 
 
-	$scope.go = function ( path ) {
-		$location.path( path );
-	  };
+	$scope.go = function (path) {
+		$location.path(path);
+	};
 
 	$scope.register = () => {
 		AuthFactory.createUser($scope.account).then(user => {

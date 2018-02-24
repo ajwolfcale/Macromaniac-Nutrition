@@ -40,6 +40,11 @@ angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular
         templateUrl: "partials/register.html",
         controller: "LoginCtrl"
     })
+    .when("/progress", {
+      templateUrl: "partials/progress.html",
+      controller: "SearchCtrl",
+        resolve: { isAuth }
+    })
     .when("/profile", {
         templateUrl: "partials/profile.html",
         controller: "ProfileCtrl",

@@ -1,89 +1,82 @@
+<div class="slat">
+    <h1 class= "al-center">Add your daily nutrients</h1>
 
-<h1>Add your daily nutrients</h1>
-
-<h4>Choose a date that you would like to enter nutrients for</h4>
-<div class="date-wrapper">
-    <div moment-picker="myDate"> </div>
-    <div class="input-group form-control form-control-lg"
-        moment-picker="ctrl.datepicker"
-        format="L"
-        min-view="month"
-        max-view="day"
-        today="true"
-        set-on-select="true"
-        change="formatDate(newValue._i)">
-        <input class="form-control"
-            placeholder="Select a date"
-            ng-model="ctrl.datepicker"
-            ng-model-options="{ updateOn: 'blur' }">
+    <h4>Choose a date that you would like to enter nutrients for</h4>
+    <div class="date-wrapper">
+        <div moment-picker="myDate"> </div>
+        <div class="input-group round p10" moment-picker="ctrl.datepicker" format="L" min-view="month" max-view="day" today="true"
+            set-on-select="true" change="formatDate(newValue._i)">
+            <input class="form-control" placeholder="Select a date" ng-model="ctrl.datepicker" ng-model-options="{ updateOn: 'blur' }">
+        </div>
     </div>
-</div>
-<h4>Next, search for any items you've eaten</h4>
-<div class="allAPI">
-    <form ng-submit="searchFoods(); isCollapsedHorizontal = !isCollapsedHorizontal" class ="searchWrapper">
-        <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
-        <button class="btn btn-default" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
-    </form>
-    <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
-    <div uib-collapse="!isCollapsedHorizontal" class="foodBox">
-        <form id="foodCard">
-            <ul id="foodItems" class="list-group list-group-flush">
-                <li ng-animate="'animate'" class="foodResults list-group-item" ng-repeat="food in foods | filter: searchBar">
-                    <input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)">
-                    <h6 class="cardLine foodBrand"> {{food.fields.brand_name}} | </h6>
-                    <h6 class="cardLine foodName">{{food.fields.item_name}}:</h6>
-                    Serving Size: <div class="cardLine foodDeets">{{food.fields.nf_serving_size_qty}}</div>
-                    Calories: <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
-                    Protein: <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
-                    Fat: <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
-                    Carbohydrates: <div class="cardLine foodDeets" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
-                </li>
-            </ul>
+    <h4>Next, search for any items you've eaten</h4>
+    <div class="allAPI">
+        <form ng-submit="searchFoods(); isCollapsedHorizontal = !isCollapsedHorizontal" class="searchWrapper">
+            <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
+            <button class="button small" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
+        </form>
+        <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
+        <div uib-collapse="!isCollapsedHorizontal" class="foodBox">
+            <form id="foodCard">
+                <ul id="foodItems" class="form list-group list-group-flush">
+                    <li ng-animate="'animate'" class="foodResults list-group-item" ng-repeat="food in foods | filter: searchBar">
+                        <input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)">
+                        <h6 class="cardLine foodBrand"> {{food.fields.brand_name}} | </h6>
+                        <h6 class="cardLine foodName">{{food.fields.item_name}}:</h6>
+                        Serving Size:
+                        <div class="cardLine foodDeets">{{food.fields.nf_serving_size_qty}}</div>
+                        Calories:
+                        <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
+                        Protein:
+                        <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
+                        Fat:
+                        <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
+                        Carbohydrates:
+                        <div class="cardLine foodDeets" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+
+    <!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
+    <hr>
+    <button type="button" class="button" ng-click="isCollapsed = !isCollapsed">Manually add Calories and Macros</button>
+    <hr>
+    <div uib-collapse="!isCollapsed" class="formWrapper">
+        <form class="well well-lg manualForm" ng-submit="addNutrients()">
+            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.calories" placeholder="Calories...">
+            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.protein" placeholder="Protein...">
+            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.fat" placeholder="Fats...">
+            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
+            <button class="btn btn-default" id="addNutrients" type="submit">Add Nutrients</button>
         </form>
     </div>
 </div>
-
-<!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
-<hr>
-<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Manually add Calories and Macros</button>
-<hr>
-<div uib-collapse="!isCollapsed" class="formWrapper">
-    <form class="well well-lg manualForm" ng-submit="addNutrients()">
-        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.calories" placeholder="Calories..."> 
-        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.protein" placeholder="Protein...">
-        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.fat" placeholder="Fats...">
-        <input class="form-control form-control-sm" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
-        <button class="btn btn-default" id="addNutrients" type="submit">Add Nutrients</button>
-    </form>
-</div>
-
-<h4>Progress</h4>
-Show Daily Macros<input type="checkbox" ng-model="pieShow">
+<!-- <h4>Progress</h4>
+Show Daily Macros
+<input type="checkbox" ng-model="pieShow">
 <input type="checkbox" ng-model="boxClass">
 <div class="pieShow">
     <!-- PIE -->
-    <div id="pieContainer" ng-model="pieChart" class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
-        <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors" ng-show="pieShow">
+    <!-- <div id="pieContainer" ng-model="pieChart" class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
+        <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors"
+            ng-show="pieShow">
         </canvas>
     </div>
-</div>
-SHOW CALORIES: <input type="checkbox" ng-model="calShow">
-<div class="calChart" ng-show="calShow">
+</div> -->
+<!-- SHOW CALORIES: -->
+<!-- <input type="checkbox" ng-model="calShow"> -->
+<!-- <div class="calChart" ng-show="calShow">
     <!-- LINE -->
-        <div id="lineContainer">
-            <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
-            chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colors">
-            </canvas>
-        </div>
-</div>
+    <!-- <div id="lineContainer"> -->
+        <!-- <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options" -->
+            <!-- chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colors"> -->
+        <!-- </canvas> -->
+    <!-- </div> -->
+<!-- </div> --> 
 
-
-<!-- <canvas id="bar" class="chart chart-bar"
-chart-data="data" chart-labels="labels" 
-chart-colors = "colors" chart-options="labelOptions"
->
-</canvas>
- -->
+  
 
 
 
