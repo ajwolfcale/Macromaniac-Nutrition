@@ -35,17 +35,17 @@ angular.module("NutritionApp").factory("ProfileFactory", function (FBUrl, $q, $h
     let getProfile = (user) => {
         return $q((resolve, reject) => {
             $http
-              .get(`${FBUrl}/users.json?orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`)
-              .then(({ data }) => {
-                console.log("USER ID", data);
-                let userIdArr = Object.keys(data).map(userKey => {
-                  console.log("user", userKey);
-                  data[userKey].id = userKey;
-                  return data[userKey];
+                .get(`${FBUrl}/users.json?orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`)
+                .then(({ data }) => {
+                    console.log("USER ID", data);
+                    let userIdArr = Object.keys(data).map(userKey => {
+                        console.log("user", userKey);
+                        data[userKey].id = userKey;
+                        return data[userKey];
+                    });
+                    console.log("Current User: ", userIdArr);
+                    resolve(userIdArr);
                 });
-                console.log("Current User: ", userIdArr);
-                resolve(userIdArr);
-            });
         });
     };
 

@@ -21,27 +21,3 @@ angular.module("NutritionApp").controller("NavCtrl", function($scope, $window, A
 	};
 });
 
-// angular.module("NutritionApp").controller("NavCtrl", function ($scope, $window, $location) {
-
-//   $scope.isActive = (viewLocation) => viewLocation === $location.path();
-  
-//   $scope.navItems = [
-//     {
-//       name: "HOME",
-//       url: "/"
-//     },
-//     {
-//       name: "PROGRESS",
-//       url: "#!/search"
-//     },
-//     {
-//       name: "Sign in",
-//       url: "#!/login"
-//     },
-//     {
-//       name: "Sign out",
-//       url: "#!/login",
-//       bang: "!"
-//     }
-//   ];    
-//

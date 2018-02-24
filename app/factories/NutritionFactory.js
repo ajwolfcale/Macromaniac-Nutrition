@@ -3,7 +3,7 @@
 
 angular.module("NutritionApp").factory("NutritionFactory", function ($q, $http, FoodCreds, AuthFactory, FBUrl) {
 
-// --------------------------------Nutrition API Call--------------------------------
+	// --------------------------------Nutrition API Call--------------------------------
 	let getFoods = (foods) => {
 		return $q(function (resolve, reject) {
 			$http.get(`https://api.nutritionix.com/v1_1/search/${foods}?results=0%3A50&cal_min=0&cal_max=50000&fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat%2Cnf_total_carbohydrate%2Cnf_protein&appId=${FoodCreds.app_id}&appKey=${FoodCreds.key}`)
@@ -16,27 +16,8 @@ angular.module("NutritionApp").factory("NutritionFactory", function ($q, $http, 
 		});
 	};
 
-	// let getFoods = (foods) => {
-	// 	this.autoCompleteOptions = {
-	// 		minimumChars: 1,
-	// 		dropdownWidth: '500px',
-	// 		dropdownHeight: '200px',
-	// 		pagingEnabled: true,
-	// 		pageSize: 5,
-	// 		data: function (searchText, pagingParams) {
-	// 			return $http.get(`https://api.nutritionix.com/v1_1/search/${foods}?results=0%3A50&cal_min=0&cal_max=50000&fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat%2Cnf_total_carbohydrate%2Cnf_protein&appId=${FoodCreds.app_id}&appKey=${FoodCreds.key}`)
-	// 			.then(function (response) {
-	// 					searchText = searchText.toUpperCase();
-	// 					var foods = getPage(foods, pagingParams.pageIndex, pagingParams.pageSize);
-	// 					return _.pluck(foods, 'name');
-	// 				})
-					
-	// 		}
-	// 	};
-	// };
 
-
-// -----------------------------Firebase Data Call--------------------
+	// -----------------------------Firebase Data Call--------------------
 	let getNutrients = () => {
 		return $q(function (resolve, reject) {
 			let currentUser = AuthFactory.getCurrentUser();
