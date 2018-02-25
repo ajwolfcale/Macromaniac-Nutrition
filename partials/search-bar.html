@@ -1,25 +1,28 @@
-<div class="slat">
-    <h1 class= "al-center">Add your daily nutrients</h1>
-
+<div class="slat shadow round p10">
+    <h1 class= "al-center slat-title">Add your daily nutrients</h1>
+    <h3>First:</h3>
     <h4>Choose a date that you would like to enter nutrients for</h4>
     <div class="date-wrapper">
         <div moment-picker="myDate"> </div>
-        <div class="input-group round p10" moment-picker="ctrl.datepicker" format="L" min-view="month" max-view="day" today="true"
+        <div class=" form-group input-group round p10" moment-picker="ctrl.datepicker" format="L" min-view="month" max-view="day" today="true"
             set-on-select="true" change="formatDate(newValue._i)">
             <input class="form-control" placeholder="Select a date" ng-model="ctrl.datepicker" ng-model-options="{ updateOn: 'blur' }">
         </div>
     </div>
-    <h4>Next, search for any items you've eaten</h4>
+    <h3 class="then">Then:</h3>
+    <h4>Search for any items you've eaten</h4>
     <div class="allAPI">
         <form ng-submit="searchFoods(); isCollapsedHorizontal = !isCollapsedHorizontal" class="searchWrapper">
             <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
-            <button class="button small" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
+            <div class="search-btn">
+                <button class="btn btn-default shadow small" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
+            </div>  
         </form>
         <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
         <div uib-collapse="!isCollapsedHorizontal" class="foodBox">
             <form id="foodCard">
                 <ul id="foodItems" class="form list-group list-group-flush">
-                    <li ng-animate="'animate'" class="foodResults list-group-item" ng-repeat="food in foods | filter: searchBar">
+                    <li ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
                         <input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)">
                         <h6 class="cardLine foodBrand"> {{food.fields.brand_name}} | </h6>
                         <h6 class="cardLine foodName">{{food.fields.item_name}}:</h6>
@@ -40,9 +43,10 @@
     </div>
 
     <!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
-    <hr>
-    <button type="button" class="button" ng-click="isCollapsed = !isCollapsed">Manually add Calories and Macros</button>
-    <hr>
+    
+    <h3 class="or">Or:</h3>
+    <button type="button" class="btn btn-block shadow small grad-yellow" ng-click="isCollapsed = !isCollapsed"><h4>Manually add your nutrients</h4></button>
+    
     <div uib-collapse="!isCollapsed" class="formWrapper">
         <form class="well well-lg manualForm" ng-submit="addNutrients()">
             <input class="form-control form-control-sm" type="number" ng-model="consumedToday.calories" placeholder="Calories...">
