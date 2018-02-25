@@ -19,26 +19,56 @@
             </div>  
         </form>
         <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
+        <div uib-collapse="!isCollapsedHorizontal">
+
+        <table>
+                <tr>
+                    <th>| Brand |</th>
+                    <th>| Food |</th>
+                    <th>| Serving size |</th>
+                    <th>| Calories |</th>
+                    <th>| Protein |</th>
+                    <th>| Fat |</th>
+                    <th>| Carbs |</th>
+                </tr>
+            </table>
+        </div>
+
         <div uib-collapse="!isCollapsedHorizontal" class="foodBox">
-            <form id="foodCard">
+            <table>
+                <tr ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
+                    <td><input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)"></td>
+                    <td>&nbsp{{food.fields.brand_name}}&nbsp|</td>
+                    <td>&nbsp {{food.fields.item_name}}&nbsp| </td>
+                    <td><span>&nbspAmount:</span>&nbsp{{food.fields.nf_serving_size_qty}}&nbsp | </td>
+                    <td><span>&nbspCalories</span>&nbsp{{food.fields.nf_calories}}&nbsp|</td>
+                    <td><span>&nbspProtein</span>&nbsp{{food.fields.nf_protein}}&nbsp|</td>
+                    <td><span>&nbspFat</span>&nbsp{{food.fields.nf_total_fat}}&nbsp|</td>
+                    <td><span>&nbspCarbs</span>&nbsp{{food.fields.nf_total_carbohydrate}}</td>
+                </tr>
+            </table>
+            <!-- <form id="foodCard">
+            
                 <ul id="foodItems" class="form list-group list-group-flush">
                     <li ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
-                        <input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)">
-                        <h6 class="cardLine foodBrand"> {{food.fields.brand_name}} | </h6>
-                        <h6 class="cardLine foodName">{{food.fields.item_name}}:</h6>
-                        Serving Size:
-                        <div class="cardLine foodDeets">{{food.fields.nf_serving_size_qty}}</div>
-                        Calories:
-                        <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
-                        Protein:
-                        <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
-                        Fat:
-                        <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
-                        Carbohydrates:
-                        <div class="cardLine foodDeets" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
+                        <div class="single-results">
+                            <input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)">
+                            <h5 class="cardLine"> {{food.fields.brand_name}} | </h5>
+                            <h5 class="cardLine">{{food.fields.item_name}} | </h5>
+                            Serving Size:
+                            <div class="cardLine foodDeets">{{food.fields.nf_serving_size_qty}}</div>
+                            Calories:
+                            <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
+                            Protein:
+                            <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
+                            Fat:
+                            <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
+                            Carbohydrates:
+                            <div class="cardLine foodDeets" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
+                        </div>
                     </li>
                 </ul>
-            </form>
+            </form> -->
         </div>
     </div>
 
