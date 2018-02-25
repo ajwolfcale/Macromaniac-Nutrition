@@ -1,31 +1,33 @@
-<div id="graphContainer" ng-style="{'background-image':'url(images/minimalist-workout.jpg)','background-size': 'cover'}">
+<div class="grid" id="graphContainer" ng-style="{'background-image':'url(images/runner.jpg)','background-size': 'cover'}">
+    
+    <!-- LINE -->
+    <div class="" id="lineContainer">
+        <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
+            chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colors" style="height: 340px; width: 680px;">
+        </canvas>
+    </div>
+    
+    
     <!-- PIE -->
-    <section>
-        <div class="pieID pie">
-        </div>
-        <ul class="pieID legend">
-            <li>
-                <em>Protein</em>
-            </li>
-            <li>
-                <em>Fat</em>
-            </li>
-            <li>
-                <em>Carbs</em>
-            </li>
-        </ul>
-    </section>
-
     <div id="pieContainer" ng-model="pieChart" class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
         <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors">
         </canvas>
     </div>
 
-    <!-- LINE -->
-    <div id="lineContainer">
-        <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
-            chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colors" style="height: 340px; width: 680px;">
-        </canvas>
-    </div>
-    <!-- </div> -->
+    <section>
+            <div class="pieID pie">
+            </div>
+            <ul class="pieID legend">
+                <li>
+                    <em>Protein</em>
+                </li>
+                <li>
+                    <em>Fat</em>
+                </li>
+                <li>
+                    <em>Carbs</em>
+                </li>
+            </ul>
+        </section>
+
 </div>

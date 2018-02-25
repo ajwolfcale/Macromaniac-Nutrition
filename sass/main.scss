@@ -142,12 +142,24 @@ nav{
 .slat{
     padding-top: 0px;
 }
+.start{
+    margin-top:25px;
+    margin-bottom:25px;
+}
 .start-today{
     color: #3C373E;
+    cursor: pointer;
+}
+
+// //-------------------------------REGISTER------------------------------
+
+.reg-slat{
+    background: rgb(204, 204, 206);
+    border-radius:15px;
 }
 
 // // -----------------------------General Styling---------------------------------
-body{    
+body{
     background-color: white;
     color: black;
     font-family: 'Advent Pro', sans-serif; 
@@ -258,24 +270,27 @@ body{
 // }
 
 
+// ------------------------Progres---------------------
+
 #graphContainer{
     display: inline-flex;
+    flex-wrap: wrap;
     width: 100%;
     min-height: 800px;
 }
 
 #doughnut{
     padding-top: 20px;
-    height: 340px;
-    width: 680px;
+    height: 400px;
+    width: 800;
 }
 
 
-// #lineContainer{
-//     padding-top: 20px;
-//     height: 400;
-//     width: 800px;
-// }
+#lineContainer{
+    padding-top: 20px;
+    height: 500;
+    width: 1000px;
+}
 
 // #addNutrients{
 //     margin-top: 8px;
