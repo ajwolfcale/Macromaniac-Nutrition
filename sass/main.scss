@@ -207,33 +207,10 @@ nav{
     background-color: white;    
 }
 
-// h1{
-//     color: #373239;
-//     padding-left: 15px;
-//     color: rgba(255, 255, 255, 0.883);
-// }
-
-// h3{
-//     border-bottom: 1px solid #E1DB2B;
-//     font-family: 'Advent Pro', sans-serif;
-//     color: rgba(255, 255, 255, 0.883);
-// }
-
-// h4{
-//     padding-left: 15px;
-//     font-family: 'Advent Pro', sans-serif;
-//     color: rgba(255, 255, 255, 0.883);
-// }
-
-// p{
-//     font-family: 'Advent Pro', sans-serif;
-//     color: rgba(255, 255, 255, 0.883);
-// }
-
-
-// // -----------------------------------FOOD API RESULTS
+// // ------------------------FOOD API RESULTS
 .foodBox{
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
     height: 400px;
     width: 100%;
@@ -241,35 +218,44 @@ nav{
 }
 
 .food-results{
-    height: 100px;
+    position: relative;
+    height: 70px;
 }
 
+.single-results{
+    position: absolute;
+    bottom: 35%;
+}
 .cardLine{
     display: inline;
 }
-
-.foodDeets{
-    font-size: .75em;
+#addNutrients{
+    margin-top: 10px;
 }
- 
+th{
+    color:#3C373E;
+}
 .list-group-item:nth-child(even){
-    background-color:#3C373E;
-    color: white;
+    background-color:rgb(193, 193, 194);
+    color: #3C373E;
 }
 .list-group-item:nth-child(odd){
     background-color: rgba(255, 255, 255, 0.603);
-    color: black;
+    color: #3C373E;
 }
 
 .list-group-item:hover:nth-child(odd){
-    background-color: rgba(255, 255, 255, 0.801);
-    border: 1px solid blue;
-    box-shadow: 10px 10px 10px 10px rgba(52, 107, 170, 0.794);
+    z-index:3;
+    background: #3C373E;
+    color: white;
+    box-shadow: 2px 2px 2px rgb(243, 238, 139);
 }
 
 .list-group-item:hover:nth-child(even){
-    background-color: rgba(151, 145, 145, 0.829);
-    box-shadow: 3px 3px 3px 3px rgba(240, 233, 48, 0.794);
+    z-index:3;
+    background: #3C373E;
+    color: white;
+    box-shadow: 2px 2px 2px rgb(243, 238, 139);
 }
 
 
@@ -294,15 +280,6 @@ nav{
     height: 500;
     width: 1000px;
 }
-
-// #addNutrients{
-//     margin-top: 8px;
-// }
-
-// #regBtn{
-//     margin-top: 8px;
-// }
-
 
 
 // -------------------ROTATE-----------------
