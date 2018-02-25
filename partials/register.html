@@ -1,16 +1,18 @@
-<h3>Create an account</h3>
-<form class="auth-form register">
+<div class="slat shadow reg-slat">
+    <h1 class="al-center pad text grad-yellow">Create an account</h1>
+    <form class="auth-form register">
+        <div>
+            <input class="form-control pad" type="text" autofocus="true" ng-model="account.email" placeholder="Email Address">
+        </div>
+        <div>
+            <input class="form-control pad" type="password" ng-model="account.password" placeholder="Password">
+        </div>
+        <div>
+            <button id="regBtn" class="btn btn-default" ng-click="register()">Register</button>
+        </div>
+    </form>
     <div>
-        <input class="form-control" type="text" autofocus="true" ng-model="account.email" placeholder="Email Address">
+            <h3 class="pad al-center">I have an account</h3>
+            <button class="btn btn-default al-center" ng-click="go('/login')">Sign in</button>
     </div>
-    <div>
-        <input class="form-control" type="password" ng-model="account.password" placeholder="Password">
-    </div>
-    <div>
-        <button id="regBtn" class="btn btn-default" ng-click="register()">Register</button>
-    </div>
-</form>
-<div>
-        <h3>I have an account</h3>
-        <button class="btn btn-default" ng-click="go('/login')">Sign in</button>
-    </div>
+</div>
