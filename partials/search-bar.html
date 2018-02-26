@@ -1,118 +1,97 @@
 <div class="slat shadow round p10">
-    <h1 class= "al-center slat-title">Add your daily nutrients</h1>
-    <h3>First:</h3>
-    <h4>Choose a date that you would like to enter nutrients for</h4>
-    <div class="date-wrapper">
-        <div moment-picker="myDate"> </div>
-        <div class=" form-group input-group round p10" moment-picker="ctrl.datepicker" format="L" min-view="month" max-view="day" today="true"
-            set-on-select="true" change="formatDate(newValue._i)">
-            <input class="form-control" placeholder="Select a date" ng-model="ctrl.datepicker" ng-model-options="{ updateOn: 'blur' }">
-        </div>
-    </div>
-    <h3 class="then">Then:</h3>
-    <h4>Search for any items you've eaten</h4>
-    <div class="allAPI">
-        <form ng-submit="searchFoods(); isCollapsedHorizontal = !isCollapsedHorizontal" class="searchWrapper">
-            <input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
-            <div class="search-btn">
-                <button class="btn btn-default shadow small" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
-            </div>  
-        </form>
-        <!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
-        <div uib-collapse="!isCollapsedHorizontal">
+	<h1 class="al-center slat-title">Add your daily nutrients</h1>	
+	<h2>First:</h2>
+	<h4>What date would you like to add nutrients to? &nbsp</h4>
+	<div class="date-wrapper">
+		<div moment-picker="myDate"> </div>
+		<div class=" form-group input-group" moment-picker="ctrl.datepicker" format="L" min-view="month" max-view="day" today="true"
+		 set-on-select="true" change="formatDate(newValue._i)">
+			<input class="form-control" placeholder="Select a date" ng-model="ctrl.datepicker" ng-model-options="{ updateOn: 'blur' }">
+		</div>
+	</div>
+	<h2 class="then">Then:</h2>
+	<h4>Search for any items you've eaten</h4>
+	<div class="allAPI">
+		<form ng-submit="searchFoods(); isCollapsedHorizontal = !isCollapsedHorizontal" class="searchWrapper">
+			<input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
+			<div class="search-btn">
+				<button class="btn btn-default shadow small" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
+			</div>
+		</form>
+		<!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
+		<div uib-collapse="!isCollapsedHorizontal">
+			<table class="table-header">
+				<tr>
+					<th class="al-center">Add &nbsp <input class="add-img" type="image" src="images/add1.png"></th>
+					<th class="al-center">Brand</th>
+					<th class="al-center">Food</th>
+					<th class="al-center">Calories</th>
+					<th class="al-center">Protein</th>
+					<th class="al-center">Fat</th>
+					<th class="al-center">Carbs</th>
+				</tr>
+			</table>
+		</div>
+		<div uib-collapse="!isCollapsedHorizontal" class="foodBox">
+			<table class="table-results">
+				<tr ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
+					<td class="td">
+						<input type="image" src="images/add1.png"  class="btn btn-primary" data-toggle="modal" data-target="#addModal" ng-click="addDbNutrients(food.fields)">
+					</td>
+					<td class="td">{{food.fields.brand_name}}</td>
+					<td class="td">{{food.fields.item_name}}</td>
+					<td class="td"> 
+						<span>Calories: </span>&nbsp{{food.fields.nf_calories}}</td>
+					<td class="td">
+						<span>Protein: </span>&nbsp{{food.fields.nf_protein}}</td>
+					<td class="td">
+						<span>Fat: </span>&nbsp{{food.fields.nf_total_fat}}</td>
+					<td>
+						<span>Carbs: </span>&nbsp{{food.fields.nf_total_carbohydrate}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
-        <table>
-                <tr>
-                    <th>| Brand |</th>
-                    <th>| Food |</th>
-                    <th>| Serving size |</th>
-                    <th>| Calories |</th>
-                    <th>| Protein |</th>
-                    <th>| Fat |</th>
-                    <th>| Carbs |</th>
-                </tr>
-            </table>
-        </div>
+	<!-- MODAL -->
 
-        <div uib-collapse="!isCollapsedHorizontal" class="foodBox">
-            <table>
-                <tr ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
-                    <td><input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)"></td>
-                    <td>&nbsp{{food.fields.brand_name}}&nbsp|</td>
-                    <td>&nbsp {{food.fields.item_name}}&nbsp| </td>
-                    <td><span>&nbspAmount:</span>&nbsp{{food.fields.nf_serving_size_qty}}&nbsp | </td>
-                    <td><span>&nbspCalories</span>&nbsp{{food.fields.nf_calories}}&nbsp|</td>
-                    <td><span>&nbspProtein</span>&nbsp{{food.fields.nf_protein}}&nbsp|</td>
-                    <td><span>&nbspFat</span>&nbsp{{food.fields.nf_total_fat}}&nbsp|</td>
-                    <td><span>&nbspCarbs</span>&nbsp{{food.fields.nf_total_carbohydrate}}</td>
-                </tr>
-            </table>
-            <!-- <form id="foodCard">
-            
-                <ul id="foodItems" class="form list-group list-group-flush">
-                    <li ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
-                        <div class="single-results">
-                            <input class="cardLine" type="image" src="images/add1.png" ng-click="addDbNutrients(food.fields)">
-                            <h5 class="cardLine"> {{food.fields.brand_name}} | </h5>
-                            <h5 class="cardLine">{{food.fields.item_name}} | </h5>
-                            Serving Size:
-                            <div class="cardLine foodDeets">{{food.fields.nf_serving_size_qty}}</div>
-                            Calories:
-                            <div class="cardLine foodDeets" ng-model="consumedToday.calories">{{food.fields.nf_calories}}</div>
-                            Protein:
-                            <div class="cardLine foodDeets" ng-model="consumedToday.protein">{{food.fields.nf_protein}}</div>
-                            Fat:
-                            <div class="cardLine foodDeets" ng-model="consumedToday.fat">{{food.fields.nf_total_fat}}</div>
-                            Carbohydrates:
-                            <div class="cardLine foodDeets" ng-model="consumedToday.carbs">{{food.fields.nf_total_carbohydrate}}</div>
-                        </div>
-                    </li>
-                </ul>
-            </form> -->
-        </div>
-    </div>
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content modal-back">
+				<div class="modal-header">
+				  <h2 class="modal-title grad-red text" id="exampleModalLabel">Your nutrients have been added!</h2>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<li>Calories: {{consumedToday.calories}}</li>
+				  		<li>Protein: {{consumedToday.protein}}</li>
+						<li>Fat: {{consumedToday.fat}}</li> 
+						<li>Carbs: {{consumedToday.carbs}}</li>
+					</ul>	
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-secondary" ng-href="#!/progress">Your Progress</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+	<!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
 
-    <!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
-    
-    <h3 class="or">Or:</h3>
-    <button type="button" class="btn btn-block shadow small grad-yellow" ng-click="isCollapsed = !isCollapsed"><h4>Manually add your nutrients</h4></button>
-    
-    <div uib-collapse="!isCollapsed" class="formWrapper">
-        <form class="well well-lg manualForm" ng-submit="addNutrients()">
-            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.calories" placeholder="Calories...">
-            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.protein" placeholder="Protein...">
-            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.fat" placeholder="Fats...">
-            <input class="form-control form-control-sm" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
-            <button class="btn btn-default" id="addNutrients" type="submit">Add Nutrients</button>
-        </form>
-    </div>
+	<h2 class="or">Or:</h2>
+	<button type="button" class="btn btn-block shadow small grad-yellow" ng-click="isCollapsed = !isCollapsed">
+		<h4>Manually add your nutrients</h4>
+	</button>
+	<div uib-collapse="!isCollapsed" class="formWrapper">
+		<form class="well well-lg manualForm" ng-submit="addNutrients()">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.calories" placeholder="Calories...">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.protein" placeholder="Protein...">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.fat" placeholder="Fats...">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
+			<button class="btn btn-default" id="addNutrients" type="submit">Add Nutrients</button>
+		</form>
+	</div>
 </div>
-<!-- <h4>Progress</h4>
-Show Daily Macros
-<input type="checkbox" ng-model="pieShow">
-<input type="checkbox" ng-model="boxClass">
-<div class="pieShow">
-    <!-- PIE -->
-    <!-- <div id="pieContainer" ng-model="pieChart" class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
-        <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors"
-            ng-show="pieShow">
-        </canvas>
-    </div>
-</div> -->
-<!-- SHOW CALORIES: -->
-<!-- <input type="checkbox" ng-model="calShow"> -->
-<!-- <div class="calChart" ng-show="calShow">
-    <!-- LINE -->
-    <!-- <div id="lineContainer"> -->
-        <!-- <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options" -->
-            <!-- chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colors"> -->
-        <!-- </canvas> -->
-    <!-- </div> -->
-<!-- </div> --> 
-
-  
-
-
-
-
-

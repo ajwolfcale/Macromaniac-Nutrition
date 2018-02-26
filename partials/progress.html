@@ -1,5 +1,5 @@
-<div class="grid" id="graphContainer" ng-style="{'background-image':'url(images/runner.jpg)','background-size': 'cover'}">
-    
+<div id="prog-page" class="slat shadow" ng-style="{'background-image':'url(images/run.jpg)','background-size': 'cover'}">
+    <h1 class="al-center">Calorie Intake vs. Calorie Goal</h1>
     <!-- LINE -->
     <div class="" id="lineContainer">
         <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
@@ -7,27 +7,20 @@
         </canvas>
     </div>
     
-    
+    <h1 class="al-center pie-title">Today's Macros</h1>
+    <section>
+        <div class="pieID pie">
+        </div>
+        <ul class="pie-legend shadow">
+            <li class="protein">Protein</li>
+            <li class="fat">Fat</li>
+            <li class="carbs">Carbs</li>
+        </ul>
+    </section>
     <!-- PIE -->
-    <div id="pieContainer" ng-model="pieChart" class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
-        <canvas id="doughnut" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors">
+    <div id="pieContainer" ng-model="pieChart" class="box pie-container" ng-class="{'box': boxClass, 'circle': !boxClass}">
+        <canvas id="doughnut" class="chart chart-doughnut pie-chart" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors">
         </canvas>
     </div>
-
-    <section>
-            <div class="pieID pie">
-            </div>
-            <ul class="pieID legend">
-                <li>
-                    <em>Protein</em>
-                </li>
-                <li>
-                    <em>Fat</em>
-                </li>
-                <li>
-                    <em>Carbs</em>
-                </li>
-            </ul>
-        </section>
 
 </div>
