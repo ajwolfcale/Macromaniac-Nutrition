@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory) {
+angular.module("NutritionApp").controller('SearchCtrl', function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory) {
 
 	$scope.$on('$viewContentLoaded', function () {
 		$scope.graphNutrients();
-
 	});
 
 	// --------------------------------Get Dates--------------
@@ -106,7 +105,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				let dateResults = results.filter(function (currentDay) {
 					return currentDay.date === date;
 				});
-				// console.log('date Results', dateResults);
 				return dateResults;
 			})
 			.catch((err) => {
@@ -161,7 +159,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				];
 			});
 		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
-		// $scope.pieData = [1, 1, 1]
 
 
 
@@ -182,19 +179,19 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 	// --------------------------------CHART STYLING-------------------
 	$scope.boxClass = true;
 	$scope.hoverColors = ['#f8ec00', '#FFFFFF', '#c1faec'];
-	$scope.pieColors = ['#DCD525', '#353037', '#C7C5B9', '#FFFFFF'];
-	$scope.colors = ['#FFFFFF', '#DCD525', '#717984', '#F1C40F'];
+	$scope.pieColors = ['#DCD525', '#353037', '#6E797B', '#FFFFFF'];
+	$scope.colors = ['#6E797B', '#DCD525', '#717984', '#F1C40F'];
 	$scope.lineLabels = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, `Today: ${$scope.today}`];
 	$scope.lineSeries = ['Calorie Goal', 'Calories Eaten'];
 	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
 	$scope.options = {
-		title: {
-			display: true,
-			text: 'Calorie Intake vs. Calorie Goal',
-			fontColor: '#3C373E',
-			fontSize: 30,
-			fontFamily: "'Advent Pro', sans-serif"
-		},
+		// title: {
+		// 	display: true,
+			// text: 'Calorie Intake vs. Calorie Goal',
+		// 	fontColor: '#3C373E',
+		// 	fontSize: 40,
+		// 	fontFamily: "'Advent Pro', sans-serif"
+		// },
 		scales: {
 			yAxes: [
 				{
@@ -204,6 +201,7 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 					position: 'left',
 					ticks: {
 						min: 1200,
+						max: 5000,
 						fontColor: '#3C373E',
 						fontFamily: "'Advent Pro', sans-serif"
 					}
@@ -218,6 +216,17 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 			}]
 		}
 	};
+
+	//--------------------------------PIE ON SCROLL----------------------------
+
+// TODO:
+	// angular.element($window).bind("scroll", function() {
+    //         if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
+	// 			 console.log('Scrolled past 500px.');
+	// 			 $scope.graphNutrients();
+	// 		 }
+	// 	});
+
+
+
 });
-
-

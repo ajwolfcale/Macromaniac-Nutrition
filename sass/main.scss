@@ -188,6 +188,9 @@ nav{
 }
 
 // // ---------------------------------Search-------------------------------------
+.date-line{
+    display: inline-flex;
+}
 .then, .or{
     border-top: 1px solid rgb(209, 205, 211);
     padding-top: 12px;
@@ -208,10 +211,29 @@ nav{
 }
 
 // // ------------------------FOOD API RESULTS
+.table-header{
+    height: 3em;
+    color:white;
+    background: #3C373E;
+    // border: 4px solid #3C373E;
+    border-radius: 15px 15px 0px 0px;
+    margin-bottom: 0px;
+}
+
+th{
+    border-right: 1px solid white;
+}
+td{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.td{
+    border-right: 1px solid #3C373E;
+}
 .foodBox{
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 20px;
-    border-radius: 5px;
+    border-radius: 0px 0px 5px 5px;
     height: 400px;
     width: 100%;
     overflow-y: scroll;
@@ -232,9 +254,30 @@ nav{
 #addNutrients{
     margin-top: 10px;
 }
-th{
-    color:#3C373E;
+.btn-primary{
+    border: none;
+    background-color: transparent;
 }
+.btn-primary:hover{
+    border: none;
+    background-color: transparent;
+}
+.add-img{
+    height: .8em; 
+    width: .8em; 
+}
+.btn-secondary{
+    color: white;
+    background-color: transparent;
+}
+.btn-secondary:hover{
+    color: #DCD525;
+    border: .5px solid #DCD525;
+}
+.modal-back{
+    background-color: #6E797B;
+}
+
 .list-group-item:nth-child(even){
     background-color:rgb(193, 193, 194);
     color: #3C373E;
@@ -268,17 +311,52 @@ th{
     min-height: 800px;
 }
 
+#lineContainer{
+    padding-top: 20px;
+    height: 450px;
+    width: 900px;
+}
+
 #doughnut{
     padding-top: 20px;
     height: 400px;
     width: 800;
 }
+.pie-title{
+    margin-top: 20px;
+    padding-top: 75px;
+}
+.pie-legend{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    background: linear-gradient(90deg, #3C373E, #6E797B, #DCD525);
+    width: 65%;
+    padding: 0px;
+}
 
+.protein{
+    color: #DCD525;
+    font-style: italic;
+    font-size: 1.5em;
+    padding:5px;
+}
+.fat{
+    color: #353037;
+    font-style: italic;
+    font-size: 1.5em;
+    padding:5px;
+}
+.carbs{
+    color: #6E797B;
+    font-style: italic;
+    font-size: 1.5em;
+    padding:5px;
+}
 
-#lineContainer{
-    padding-top: 20px;
-    height: 500;
-    width: 1000px;
+#prog-page{
+    height: 1200px;
 }
 
 
