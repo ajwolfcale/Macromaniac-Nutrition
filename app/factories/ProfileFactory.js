@@ -22,8 +22,7 @@ angular.module("NutritionApp").factory("ProfileFactory", function (FBUrl, $q, $h
             $http
                 .post(`${FBUrl}/${data.uid}/nutrientsToday.json`, JSON.stringify(data))
                 .then(data => {
-                    // console.log(data);
-                    // console.log("Added User's nutrients", data.data);
+                    console.log("Added User's nutrients", data.data);
                     resolve(data.data);
                 })
                 .catch(error => {
@@ -36,17 +35,17 @@ angular.module("NutritionApp").factory("ProfileFactory", function (FBUrl, $q, $h
     let getProfile = (user) => {
         return $q((resolve, reject) => {
             $http
-              .get(`${FBUrl}/users.json?orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`)
-              .then(({ data }) => {
-                console.log("USER ID", data);
-                let userIdArr = Object.keys(data).map(userKey => {
-                  console.log("user", userKey);
-                  data[userKey].id = userKey;
-                  return data[userKey];
+                .get(`${FBUrl}/users.json?orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`)
+                .then(({ data }) => {
+                    console.log("USER ID", data);
+                    let userIdArr = Object.keys(data).map(userKey => {
+                        console.log("user", userKey);
+                        data[userKey].id = userKey;
+                        return data[userKey];
+                    });
+                    console.log("Current User: ", userIdArr);
+                    resolve(userIdArr);
                 });
-                console.log("Current User: ", userIdArr);
-                resolve(userIdArr);
-            });
         });
     };
 

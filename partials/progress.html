@@ -1,0 +1,26 @@
+<div id="prog-page" class="slat shadow" ng-style="{'background-image':'url(images/run.jpg)','background-size': 'cover'}">
+    <h1 class="al-center cal-title">Calorie Intake vs. Calorie Goal</h1>
+    <!-- LINE -->
+    <div class="" id="lineContainer">
+        <canvas id="line" class="chart chart-line" chart-data="lineData" chart-labels="lineLabels" chart-series="lineSeries" chart-options="options"
+            chart-dataset-override="datasetOverride" chart-click="onClick" chart-colors="colors" style="height: 340px; width: 680px;">
+        </canvas>
+    </div>
+    
+    <h1 class="al-center pie-title">Today's Macros</h1>
+    <section>
+        <div class="pieID pie">
+        </div>
+        <ul class="pie-legend shadow">
+            <li class="protein">Protein</li>
+            <li class="fat">Fat</li>
+            <li class="carbs">Carbs</li>
+        </ul>
+    </section>
+    <!-- PIE -->
+    <div id="pieContainer" ng-model="pieChart" class="box pie-container" ng-class="{'box': boxClass, 'circle': !boxClass}">
+        <canvas id="doughnut" class="chart chart-doughnut pie-chart" chart-data="pieData" chart-labels="pieLabels" chart-colors="pieColors">
+        </canvas>
+    </div>
+
+</div>

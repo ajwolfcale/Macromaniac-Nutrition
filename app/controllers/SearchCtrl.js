@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory, $rootScope) {
+angular.module("NutritionApp").controller('SearchCtrl', function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory, $location) {
 
 	$scope.$on('$viewContentLoaded', function () {
 		$scope.graphNutrients();
-
 	});
 
 	// --------------------------------Get Dates--------------
@@ -64,15 +63,16 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		}
 
 		$scope.consumedToday.uid = firebase.auth().currentUser.uid;
-		ProfileFactory.addConsumed($scope.consumedToday)
-			.then(() => {
-				$route.reload("/#!/search");
-			});
+		ProfileFactory.addConsumed($scope.consumedToday);
+			// .then(() => {
+			// 	$route.reload("/#!/search");
+			
 	};
 
 	// --------------------------------Add API Nutrients to FB---------
 
 	$scope.addDbNutrients = (food) => {
+		// TODO: I think that I need to multiply food.nf_... by the number selected for servings.
 		console.log($scope.consumedToday); //empty string
 		$scope.consumedToday.calories = food.nf_calories;
 		$scope.consumedToday.protein = food.nf_protein;
@@ -84,7 +84,15 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 		$scope.addNutrients();
 	};
 
-	// --------------------------------Add Nutrients to FB---------------
+	// --------------------------------Select food Quantity---------------
+	// TODO: Multiply nutrient values by selected quantity
+
+
+
+
+
+
+	// --------------------------------Add Nutrients to GRAPH---------------
 
 	let calArr = [];
 	let proteinArr = [];
@@ -97,7 +105,6 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				let dateResults = results.filter(function (currentDay) {
 					return currentDay.date === date;
 				});
-				// console.log('date Results', dateResults);
 				return dateResults;
 			})
 			.catch((err) => {
@@ -152,7 +159,9 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				];
 			});
 		$scope.pieLabels = ["Protein", "Fat", "Carbs"];
-		$scope.pieData = [1, 1, 1];
+
+
+
 	};
 	// ---------------------------------LINE CHART---------
 
@@ -167,22 +176,61 @@ angular.module("NutritionApp").controller("SearchCtrl", function ($q, $scope, $w
 				console.log('ERROR', err);
 			});
 	};
-
-
+	// --------------------------------CHART STYLING-------------------
+	$scope.boxClass = true;
+	$scope.hoverColors = ['#f8ec00', '#FFFFFF', '#c1faec'];
+	$scope.pieColors = ['#DCD525', '#353037', '#6E797B', '#FFFFFF'];
+	$scope.colors = ['#6E797B', '#DCD525', '#717984', '#F1C40F'];
 	$scope.lineLabels = [$scope.back6Days, $scope.back5Days, $scope.back4Days, $scope.back3Days, $scope.back2Days, $scope.back1Days, `Today: ${$scope.today}`];
 	$scope.lineSeries = ['Calorie Goal', 'Calories Eaten'];
-
 	$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
 	$scope.options = {
+		// title: {
+		// 	display: true,
+			// text: 'Calorie Intake vs. Calorie Goal',
+		// 	fontColor: '#3C373E',
+		// 	fontSize: 40,
+		// 	fontFamily: "'Advent Pro', sans-serif"
+		// },
 		scales: {
 			yAxes: [
 				{
 					id: 'y-axis-1',
 					type: 'linear',
 					display: true,
-					position: 'left'
+					position: 'left',
+					ticks: {
+						min: 1200,
+						max: 5000,
+						fontColor: '#3C373E',
+						fontFamily: "'Advent Pro', sans-serif"
+					}
+				},
+
+			],
+			xAxes: [{
+				ticks: {
+					fontColor: '#3C373E',
+					fontFamily: "'Advent Pro', sans-serif"
 				}
-			]
+			}]
 		}
 	};
+
+	$scope.go = function (path) {
+		$location.path(path);
+	};
+
+	//--------------------------------PIE ON SCROLL----------------------------
+
+// TODO:
+	// angular.element($window).bind("scroll", function() {
+    //         if (($window.innerHeight + $window.scrollY) >= document.body.offsetHeight) {
+	// 			 console.log('Scrolled past 500px.');
+	// 			 $scope.graphNutrients();
+	// 		 }
+	// 	});
+
+
+
 });

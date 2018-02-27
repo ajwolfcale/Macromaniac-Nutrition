@@ -1,92 +1,402 @@
 // TODO: Form needs to display as grid
 
-//-------------------------------NAV BAR------------------------------
-
-.navbar{
-    box-shadow: 0 1px 3px rgba(225, 219, 43, 0.623);
-    margin-bottom: 25px;
-}
-.bg-light {
-    background-color: #812ea58e; 
-}
-
-
-//-------------------------------BODY/GRID------------------------------
-
-main{
-    background-color: rgba(255, 255, 255, 0.863);
-    color: #373239;
-}
-
-input{
-    background-color: rgba(255, 255, 255, 0.883);
+// -------Fonts/colors--------------------
+// font-family: 'Scope One', serif;
+// font-family: 'Open Sans Condensed', sans-serif;
+// #337ab7
+// // -----------------------------General Styling---------------------------------
+body{
+    background-color: white;
     color: black;
+    font-family: 'Advent Pro', sans-serif; 
+}
+.slat-title{
+    padding-top:25px;
+    color: #3C373E;
+}
+.butt{
+    margin-top: 8px;
+}
+//-------------------------------NAV BAR------------------------------
+nav{
+    a {
+        color: #373239;
+        font-size: 1.2em;
+    }
+}
+
+.nav-item.nav-link.active:hover{
+    color: #373239; 
+    // border-bottom: 1px solid #DAD426;
+    border-left: 1px solid #DAD426;
+    font-size: 1.5em;
+    // background-color: white;
+}
+.navbar{
+    margin-bottom: 0px;
+    min-height: 40px;
+}
+.home-title{
+    font-size: 6em;
+    margin-bottom: 20px;
+    // text-shadow: 1px 1px 1px white;
+}
+
+// -------------------------------NAV - BURGER----------------------------
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #DAD426;
+}
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+  background: #cdcdcd;
+}
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: transparent;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+#menu li
+{
+  padding: 10px 0;
+  font-size: 1em;
+  z-index: 100;
+  color: white;
+  display: block;
+}
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+// //-------------------------------HOME------------------------------
+.slat{
+    padding-top: 0px;
+}
+.start{
+    margin-top:25px;
+    margin-bottom:25px;
+}
+.start-today{
+    color: #3C373E;
+    cursor: pointer;
+}
+
+//-----------------------------------REGISTER----------------------------------
+
+.reg-slat{
+    color: #3C373E;
+}
+
+.have-acct{
+    margin-top: 25px;
+    padding-top: 10px;
+    border-top: 1px solid rgb(209, 205, 211);
+}
+.reg-pass{
+    margin-top: 10px;
+}
+
+//------------------------------------Login-------------------------------------
+
+.new-here{
+    margin-top: 25px;
+    padding-top: 10px;
+    border-top: 1px solid rgb(209, 205, 211);
+
+}
+
+// // ---------------------------------Search-------------------------------------
+.date-line{
+    display: inline-flex;
+}
+.then, .or{
+    border-top: 1px solid rgb(209, 205, 211);
+    padding-top: 12px;
 }
 
 .allAPI{
     display: inline;
 }
 
-#searchBar{
-    width: 45%;
-    margin-bottom: 8px;
+.search-btn{
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+// --------------Manual Inputs--------------------
+
+.manualForm{
+    background-color: white;    
 }
 
-h1{
-    color: #373239;
+// // ------------------------FOOD API RESULTS
+.table-header{
+    height: 3em;
+    color:white;
+    background: #3C373E;
+    // border: 4px solid #3C373E;
+    border-radius: 15px 15px 0px 0px;
+    margin-bottom: 0px;
+}
+
+th{
+    border-right: 1px solid white;
+}
+td{
+    padding-right: 15px;
     padding-left: 15px;
 }
-
-h3{
-    border-bottom: 1px solid #E1DB2B
+.td{
+    border-right: 1px solid #3C373E;
 }
-
-h4{
-    padding-left: 15px;
-}
-// -----------------------------------FOOD API RESULTS
 .foodBox{
-    border: .5px solid rgba(128, 128, 128, 0.671);
-    box-shadow: 0px 2px 2px rgba(168, 168, 168, 0.972);
-    border-radius: 8px;
-    height: 200px;
-    width: 45%;
-    overflow: scroll;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    border-radius: 0px 0px 5px 5px;
+    height: 400px;
+    width: 100%;
+    overflow-y: scroll;
 }
 
+.food-results{
+    position: relative;
+    height: 70px;
+}
+
+.single-results{
+    position: absolute;
+    bottom: 35%;
+}
 .cardLine{
     display: inline;
 }
-
-.foodDeets{
-    font-size: .75em;
+#addNutrients{
+    margin-top: 10px;
+}
+.btn-primary{
+    border: none;
+    background-color: transparent;
+}
+.btn-primary:hover{
+    border: none;
+    background-color: transparent;
+}
+.btn-primary:active {
+    background-image: none;
+    background-color: transparent;
+    border: none;
+}
+.add-img{
+    height: .8em; 
+    width: .8em; 
+}
+.btn-secondary{
+    color: white;
+    background-color: transparent;
+}
+.btn-secondary:hover{
+    color: #DCD525;
+    border: .5px solid rgb(233, 225, 113);
+}
+.modal-back{
+    background-color: #6E797B;
 }
 
-.searchFoods{
-    width: 300px;
+.list-group-item:nth-child(even){
+    background-color:rgb(193, 193, 194);
+    color: #3C373E;
+}
+.list-group-item:nth-child(odd){
+    background-color: rgba(255, 255, 255, 0.603);
+    color: #3C373E;
+}
+
+.list-group-item:hover:nth-child(odd){
+    z-index:3;
+    background: #3C373E;
+    color: white;
+    box-shadow: 2px 2px 2px rgb(243, 238, 139);
+}
+
+.list-group-item:hover:nth-child(even){
+    z-index:3;
+    background: #3C373E;
+    color: white;
+    box-shadow: 2px 2px 2px rgb(243, 238, 139);
+}
+
+
+// ------------------------Progres---------------------
+.cal-title{
+    padding-top: 25px;
 }
 
 #graphContainer{
     display: inline-flex;
-}
-
-#doughnut{
-    padding-top: 20px;
-    height: 650px;
-    width: 650px;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 800px;
 }
 
 #lineContainer{
     padding-top: 20px;
-    height: 400;
-    width: 800px;
+    height: 450px;
+    width: 900px;
 }
 
-#addNutrients{
-    margin-top: 8px;
+#doughnut{
+    padding-top: 20px;
+    height: 400px;
+    width: 800;
+}
+.pie-title{
+    margin-top: 20px;
+    padding-top: 75px;
+}
+.pie-legend{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    background: linear-gradient(90deg, #3C373E, #6E797B, #DCD525);
+    width: 65%;
+    padding: 0px;
 }
 
-#regBtn{
-    margin-top: 8px;
+.protein{
+    color: #DCD525;
+    font-style: italic;
+    font-size: 1.5em;
+    padding:5px;
+}
+.fat{
+    color: #353037;
+    font-style: italic;
+    font-size: 1.5em;
+    padding:5px;
+}
+.carbs{
+    color: #6E797B;
+    font-style: italic;
+    font-size: 1.5em;
+    padding:5px;
 }
 
+#prog-page{
+    height: 1200px;
+}
+
+
+// -------------------ROTATE-----------------
+
+//   .box:hover {
+//     transform: rotate(360deg);
+//   }
+//   .rotate {
+//     transition: all 0.1s ease-in-out;
+//   }
+//   .rotate:hover {
+//     transition: all 1s ease-in-out;
+//   }
+
+// -------------------ROTATE on Button Click-----------------
+
+// .box {
+//     margin: 20px auto;
+//   }
+//   .circle {
+//     transform: rotate(1080deg);
+//     margin: 20px auto;
+//   }
+//   .rotate {
+//     transition: all 1.5s ease-in-out;
+//   }
+
+
+
+
+
+
+
+ 

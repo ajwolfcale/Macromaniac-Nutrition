@@ -14,7 +14,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular-momentjs'])
+angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular-momentjs', 'ui.bootstrap', 'ngAnimate'])
 .constant("FBUrl", "https://macromaniac-nutrition.firebaseio.com/")
 .config(function($momentProvider){
   $momentProvider
@@ -23,6 +23,10 @@ angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular
 })
 .config($routeProvider => {
     $routeProvider
+    .when("/", {
+      templateUrl: "partials/home.html",
+      controller: "LoginCtrl"
+    })
     .when("/login", {
         templateUrl: "partials/login.html",
         controller: "LoginCtrl"
@@ -35,6 +39,11 @@ angular.module("NutritionApp", ["ngRoute", 'chart.js', 'moment-picker', 'angular
     .when("/register", {
         templateUrl: "partials/register.html",
         controller: "LoginCtrl"
+    })
+    .when("/progress", {
+      templateUrl: "partials/progress.html",
+      controller: "SearchCtrl",
+        resolve: { isAuth }
     })
     .when("/profile", {
         templateUrl: "partials/profile.html",

@@ -1,20 +1,20 @@
-<h1>User Profile</h1>
-
-<div>
-    <h4>Create your profile by entering your height, weight, and age.</h4>
-    <form>
-        Starting Date:<input id="date" type="date" ng-model="userProfile.date"><br><br>
-        First Name: <input type="text" ng-model="userProfile.firstName"><br><br>
-        Last Name: <input type="text" ng-model="userProfile.lastName"><br><br>
-        Age: <input type="number" ng-model="userProfile.age"><br><br>
-        Weight: <input type="number" ng-model="userProfile.weight"><br><br>
-        What is your daily caloric goal? 
-        <input type="number" ng-model="userProfile.calGoal"><br><br>
-        <!-- Progress picture: <input type="file" name="img" ng-model="userProfile.progPic">  -->
-    </form>
-
-    <button class="btn btn-default" ng-click="saveProfile()">Submit Your Profile!</button>
-</div>  
-
+<div class="slat shadow round p10">
+    <h1 class="al-center slat-title">Create your profile</h1>
+    <div class="form-group">
+        <form>
+            <input class="form-control form-control-sm" type="text" ng-model="userProfile.firstName" placeholder="First Name">
+            <br>
+            <input class="form-control form-control-sm" type="text" ng-model="userProfile.lastName" placeholder="Last Name">
+            <br>
+            <input class="form-control form-control-sm" type="number" ng-model="userProfile.age" placeholder="Age">
+            <br>
+            <input class="form-control form-control-sm" type="number" ng-model="userProfile.weight" placeholder="Weight">
+            <br>
+            <input class="form-control form-control-sm" type="number" ng-model="userProfile.calGoal" placeholder="Daily caloric goal">
+            <br>
+        </form>
+        <button class="btn btn-default" ng-click="saveProfile()">Submit Your Profile!</button>
+    </div>
+</div>
 
 
