@@ -17,7 +17,7 @@ Once you have your API info, you can run ```npm-install``` from the package.json
 
 ***
 
-## Links
+## Useful Links
 
 *[PAX CSS Framework](http://docs.paxagency.com/css/)
 *[UI-Bootstrap](https://angular-ui.github.io/bootstrap/)
