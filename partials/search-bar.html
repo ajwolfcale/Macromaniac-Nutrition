@@ -55,7 +55,7 @@
 
 	<!-- MODAL -->
 
-	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade bd-example-modal-sm" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 			  <div class="modal-content modal-back">
 				<div class="modal-header">
@@ -74,7 +74,7 @@
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				  <button type="button" class="btn btn-secondary" ng-href="#!/progress">Your Progress</button>
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="go('/progress')">Your Progress</button>
 				</div>
 			  </div>
 			</div>

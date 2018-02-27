@@ -262,6 +262,11 @@ td{
     border: none;
     background-color: transparent;
 }
+.btn-primary:active {
+    background-image: none;
+    background-color: transparent;
+    border: none;
+}
 .add-img{
     height: .8em; 
     width: .8em; 
@@ -272,7 +277,7 @@ td{
 }
 .btn-secondary:hover{
     color: #DCD525;
-    border: .5px solid #DCD525;
+    border: .5px solid rgb(233, 225, 113);
 }
 .modal-back{
     background-color: #6E797B;
@@ -303,6 +308,9 @@ td{
 
 
 // ------------------------Progres---------------------
+.cal-title{
+    padding-top: 25px;
+}
 
 #graphContainer{
     display: inline-flex;
