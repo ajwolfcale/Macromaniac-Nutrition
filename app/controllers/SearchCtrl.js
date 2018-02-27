@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("NutritionApp").controller('SearchCtrl', function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory) {
+angular.module("NutritionApp").controller('SearchCtrl', function ($q, $scope, $window, $route, $moment, NutritionFactory, ProfileFactory, $location) {
 
 	$scope.$on('$viewContentLoaded', function () {
 		$scope.graphNutrients();
@@ -215,6 +215,10 @@ angular.module("NutritionApp").controller('SearchCtrl', function ($q, $scope, $w
 				}
 			}]
 		}
+	};
+
+	$scope.go = function (path) {
+		$location.path(path);
 	};
 
 	//--------------------------------PIE ON SCROLL----------------------------
