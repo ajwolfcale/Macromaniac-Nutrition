@@ -19,15 +19,15 @@ Once you have your API info, you can run ```npm-install``` from the package.json
 
 ## Useful Links
 
-*[PAX CSS Framework](http://docs.paxagency.com/css/)
-*[UI-Bootstrap](https://angular-ui.github.io/bootstrap/)
-*[Angular-Animate](https://www.npmjs.com/package/angular-animate)
-*[Angular-Chart.js](http://jtblin.github.io/angular-chart.js/)
-*[Chart.js](http://www.chartjs.org/docs/latest/)
-*[Angular-Moment-Picker](https://github.com/indrimuska/angular-moment-picker)
-*[Angular-Moment](https://github.com/urish/angular-moment)
-*[Moment.js](https://momentjs.com/)
-*[Lodash](https://lodash.com/)
+* [PAX CSS Framework](http://docs.paxagency.com/css/)
+* [UI-Bootstrap](https://angular-ui.github.io/bootstrap/)
+* [Angular-Animate](https://www.npmjs.com/package/angular-animate)
+* [Angular-Chart.js](http://jtblin.github.io/angular-chart.js/)
+* [Chart.js](http://www.chartjs.org/docs/latest/)
+* [Angular-Moment-Picker](https://github.com/indrimuska/angular-moment-picker)
+* [Angular-Moment](https://github.com/urish/angular-moment)
+* [Moment.js](https://momentjs.com/)
+* [Lodash](https://lodash.com/)
 
 
 
