@@ -74,12 +74,12 @@
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				  <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="go('/progress')">Your Progress</button>
+				  <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" >Your Progress</button> -->
 				</div>
 			  </div>
 			</div>
 		  </div>
-	<!-- ---------------------------MANUAL FORM TO ENTER NUTRIENTS--------------------------- -->
+	<!-- ---------------MANUAL FORM TO ENTER NUTRIENTS---------------- -->
 
 	<h2 class="or">Or:</h2>
 	<button type="button" class="btn btn-block shadow small grad-yellow" ng-click="isCollapsed = !isCollapsed">
@@ -91,7 +91,7 @@
 			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.protein" placeholder="Protein...">
 			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.fat" placeholder="Fats...">
 			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
-			<button class="btn btn-default" id="addNutrients" type="submit">Add Nutrients</button>
+			<button class="btn btn-default" id="addNutrients" type="submit" data-toggle="modal" data-target="#addModal" >Add Nutrients</button>
 		</form>
 	</div>
 </div>
