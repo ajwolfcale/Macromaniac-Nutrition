@@ -3,13 +3,13 @@
 
 
 ## About M.N.
-Macromaniac Nutrition is a web app which assists users by tracking their nutrition as well as making users more aware of what they are consuming. The user creates a profile which contains their personal stats such as: name, weight, height, age. Once the user creates a profile, he or she may search through the Nutritionix database to add the nutrients from a specific food result to their profile. If the user has already calculated their nutrients, he or she may manually input their totals and add the nutrients to their profile. Once nutrients are added, they are sent to the Macromaniac graphs. The first graph displays two lines, one representing the user's daily calorie goal, the second showing what the user has actually consumed. The second graph displays the user's protein, fat, and carbohydrate intake for the current day. 
+Macromaniac Nutrition is a web app which assists users by tracking their nutrition as well as making users more aware of what they are consuming. The user creates a profile which contains their personal stats such as: name, weight, height, age. Once the user creates a profile, he or she may search through the Nutritionix database to add the nutrients from a specific food result to their profile. If the user has already calculated their nutrients, he or she may manually input their totals and add the nutrients to their profile. Once nutrients are added, they are sent to the Macromaniac graphs. The first graph displays two lines, one representing the user's daily calorie goal, the second showing what the user has actually consumed. This represents the current day and goes back, up to one week. The second graph displays the user's protein, fat, and carbohydrate intake for the current day. 
 
 
 
 ## Usage
 
-To use this app, you will need to get an API key and application id and key from Nutritionix. You can apply for these at https://developer.nutritionix.com/signup.
+To use this app, you will need to get an API key and application id and key from Nutritionix. You can apply for these at [Nutritionix](https://developer.nutritionix.com/signup.)
 
 This app also uses a Firebase database. Sign up [here](https://firebase.google.com).
 
