@@ -9,7 +9,7 @@ Macromaniac Nutrition is a web app which assists users by tracking their nutriti
 
 ## Usage
 
-To use this app, you will need to get an API key and application id and key from Nutritionix. You can apply for these at [Nutritionix](https://developer.nutritionix.com/signup.)
+To run this app, you will need to get an API key and application id and key from Nutritionix. You can apply for these at [Nutritionix](https://developer.nutritionix.com/signup.)
 
 This app also uses a Firebase database. Sign up [here](https://firebase.google.com).
 
