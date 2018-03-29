@@ -1,0 +1,20 @@
+{
+    "users":[
+        {
+            "firstName": "Aaron",
+            "lastName": "Wolfcale",
+            "age": "29",
+            "weight": "265",
+            "calGoal": "3000",
+            "uid": "pWQq3uATAYOoYMmylmHmY2gBh2C2"
+        }
+    ],
+    "nutrientsToday": [
+        {
+            "calories": "333",
+            "protein": "333",
+            "fat": "333",
+            "carbs": "333"
+        }
+    ]
+}

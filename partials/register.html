@@ -1,0 +1,19 @@
+<div class="slat shadow reg-slat round p10">
+    <h1 class="al-center slat-title">Create an account</h1>
+    <form class="auth-form register">
+        <div class="form-group">
+            <input class="form-control" type="text" autofocus="true" ng-model="account.email" placeholder="Email Address">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>            
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" ng-model="account.password" placeholder="Password">
+        </div>
+        <div>
+            <button id="regBtn" class="btn btn-default butt" ng-click="register()">Register</button>
+        </div>
+    </form>
+    <div>
+            <h3 class="have-acct">I have an account</h3>
+            <button class="btn btn-default" ng-click="go('/login')">Sign in</button>
+    </div>
+</div>

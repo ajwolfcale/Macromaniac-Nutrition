@@ -1,0 +1,97 @@
+<div class="slat shadow round p10">
+	<h1 class="al-center slat-title">Add your daily nutrients</h1>	
+	<h2>First:</h2>
+	<h4>What date would you like to add nutrients to? &nbsp</h4>
+	<div class="date-wrapper">
+		<div moment-picker="myDate"> </div>
+		<div class=" form-group input-group" moment-picker="ctrl.datepicker" format="L" min-view="month" max-view="day" today="true"
+		 set-on-select="true" change="formatDate(newValue._i)">
+			<input class="form-control" placeholder="Select a date" ng-model="ctrl.datepicker" ng-model-options="{ updateOn: 'blur' }">
+		</div>
+	</div>
+	<h2 class="then">Then:</h2>
+	<h4>Search for any items you've eaten</h4>
+	<div class="allAPI">
+		<form ng-submit="searchFoods(); isCollapsedHorizontal = !isCollapsedHorizontal" class="searchWrapper">
+			<input id="searchBar" class="form-control form-control-lg" type="text" placeholder="What have you eaten today?" ng-model="searchBar">
+			<div class="search-btn">
+				<button class="btn btn-default shadow small" type="button" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal; searchFoods()">Search</button>
+			</div>
+		</form>
+		<!-- --------------------------------------FOOD RESULTS--------------------------------------- -->
+		<div uib-collapse="!isCollapsedHorizontal">
+			<table class="table-header">
+				<tr>
+					<th class="al-center">Add &nbsp <input class="add-img" type="image" src="images/add1.png"></th>
+					<th class="al-center">Brand</th>
+					<th class="al-center">Food</th>
+					<th class="al-center">Calories</th>
+					<th class="al-center">Protein</th>
+					<th class="al-center">Fat</th>
+					<th class="al-center">Carbs</th>
+				</tr>
+			</table>
+		</div>
+		<div uib-collapse="!isCollapsedHorizontal" class="foodBox">
+			<table class="table-results">
+				<tr ng-animate="'animate'" class="food-results list-group-item" ng-repeat="food in foods | filter: searchBar">
+					<td class="td">
+						<input type="image" src="images/add1.png"  class="btn btn-primary" data-toggle="modal" data-target="#addModal" ng-click="addDbNutrients(food.fields)">
+					</td>
+					<td class="td">{{food.fields.brand_name}}</td>
+					<td class="td">{{food.fields.item_name}}</td>
+					<td class="td"> 
+						<span>Calories: </span>&nbsp{{food.fields.nf_calories}}</td>
+					<td class="td">
+						<span>Protein: </span>&nbsp{{food.fields.nf_protein}}</td>
+					<td class="td">
+						<span>Fat: </span>&nbsp{{food.fields.nf_total_fat}}</td>
+					<td>
+						<span>Carbs: </span>&nbsp{{food.fields.nf_total_carbohydrate}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<!-- MODAL -->
+
+	<div class="modal fade bd-example-modal-sm" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content modal-back">
+				<div class="modal-header">
+				  <h2 class="modal-title grad-red text" id="exampleModalLabel">Your nutrients have been added!</h2>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<li>Calories: {{consumedToday.calories}}</li>
+				  		<li>Protein: {{consumedToday.protein}}</li>
+						<li>Fat: {{consumedToday.fat}}</li> 
+						<li>Carbs: {{consumedToday.carbs}}</li>
+					</ul>	
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" >Your Progress</button> -->
+				</div>
+			  </div>
+			</div>
+		  </div>
+	<!-- ---------------MANUAL FORM TO ENTER NUTRIENTS---------------- -->
+
+	<h2 class="or">Or:</h2>
+	<button type="button" class="btn btn-block shadow small grad-yellow" ng-click="isCollapsed = !isCollapsed">
+		<h4>Manually add your nutrients</h4>
+	</button>
+	<div uib-collapse="!isCollapsed" class="formWrapper">
+		<form class="well well-lg manualForm" ng-submit="addNutrients()">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.calories" placeholder="Calories...">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.protein" placeholder="Protein...">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.fat" placeholder="Fats...">
+			<input class="form-control form-control-sm manual" type="number" ng-model="consumedToday.carbs" placeholder="Carbohydrates...">
+			<button class="btn btn-default" id="addNutrients" type="submit" data-toggle="modal" data-target="#addModal" >Add Nutrients</button>
+		</form>
+	</div>
+</div>
